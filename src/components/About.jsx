@@ -59,7 +59,12 @@ export default function About({ aboutRef, aboutVis }) {
             <p style={{ fontSize: 17, color: "var(--text-secondary)", lineHeight: 1.85 }}>
               Beyond engineering, I lead <strong style={{ color: "var(--accent-mid)" }}>Y-LEAD Liberia</strong>,
               a youth empowerment NGO, and{" "}
-              <strong style={{ color: "var(--accent-mid)" }}>KDARC Study Abroad Agency</strong>, mentoring
+              <a
+                href="https://www.kdarc.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--accent-mid)", fontWeight: 700, textDecoration: "none" }}
+              >KDARC Study Abroad Agency</a>, mentoring
               students toward international education. My long-term mission: developing sustainable
               energy technologies for Africa.
             </p>
