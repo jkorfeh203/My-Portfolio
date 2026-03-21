@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Rounded square border -->
+  <rect x="3" y="3" width="42" height="42" rx="9" ry="9"
+    stroke="#d4a853" stroke-width="2.5" fill="none"/>
+  <!-- J -->
+  <text x="8" y="33"
+    font-family="Outfit, sans-serif"
+    font-size="22"
+    font-weight="800"
+    fill="#d4a853"
+    letter-spacing="-1">JK</text>
+</svg>

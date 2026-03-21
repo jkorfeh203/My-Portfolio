@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — John T. Korfeh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: #080808;
+      color: #f5efe0;
+      font-family: 'Outfit', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .container { padding: 24px; max-width: 520px; width: 100%; }
+    .number {
+      font-size: clamp(100px, 22vw, 180px);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, #d4a853 20%, #f0d070 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -6px;
+      margin-bottom: 16px;
+      animation: breathe 3s ease-in-out infinite;
+    }
+    @keyframes breathe {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(212,168,83,0.4)); }
+      50% { filter: drop-shadow(0 0 40px rgba(212,168,83,0.7)); }
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #d4a853;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .message {
+      font-size: clamp(15px, 2vw, 18px);
+      color: #9a8b7a;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 32px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #d4a853, #b8902a);
+      color: #080808;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 24px rgba(212,168,83,0.3);
+    }
+    .back-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(212,168,83,0.5);
+    }
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: rgba(212,168,83,0.3);
+      margin: 28px auto;
+    }
+    .sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #3d3428;
+      letter-spacing: 1.5px;
+    }
+    /* Subtle grid bg */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(212,168,83,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,168,83,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="number">404</div>
+    <div class="mono">Page Not Found</div>
+    <p class="message">
+      The page you're looking for doesn't exist or may have been moved.<br />
+      Let's get you back on track.
+    </p>
+    <a href="/" class="back-link">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+      Back to Portfolio
+    </a>
+    <div class="divider"></div>
+    <div class="sub">John T. Korfeh — Mechanical Engineer &amp; Researcher</div>
+  </div>
+</body>
+</html>
