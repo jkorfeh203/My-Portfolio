@@ -64,17 +64,6 @@ export default function SkillGauge({ label, level, delay, visible }) {
           }}
         />
       </div>
-      <span
-        style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: 11,
-          color: "var(--text-dim)",
-          minWidth: 30,
-          textAlign: "right",
-        }}
-      >
-        {level}%
-      </span>
     </div>
   );
 }
