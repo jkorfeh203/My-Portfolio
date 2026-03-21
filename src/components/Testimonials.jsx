@@ -45,22 +45,6 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "John demonstrated exceptional analytical skills during his research on the hybrid solar chimney prototype. His ability to bridge experimental work with CFD validation sets him apart from his peers.",
-    name: "Dr. [Supervisor Name]",
-    title: "Research Supervisor",
-    institution: "University Research Lab",
-    initials: "RS",
-  },
-  {
-    quote:
-      "What impressed me most about John was his ability to present complex thermodynamic concepts clearly to a diverse audience at the FMFP Conference. His work on geothermal hybrid systems shows real promise for Sub-Saharan energy access.",
-    name: "Prof. [Conference Mentor]",
-    title: "Senior Faculty, Mechanical Engineering",
-    institution: "FMFP 2025 Conference",
-    initials: "CM",
-  },
-  {
-    quote:
       "John's leadership of Y-LEAD Liberia reflects his commitment to community impact beyond the laboratory. He mentors students with genuine dedication and an infectious passion for engineering.",
     name: "Lahai S. Kamara",
     title: "National Coordinator",

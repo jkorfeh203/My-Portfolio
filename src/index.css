@@ -151,6 +151,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+.turbine-svg {
+  right: 5%;
+  top: 15%;
+}
 
 /* About */
 .about-grid {
@@ -249,6 +253,14 @@ body {
     padding: 8px;
   }
 
+  /* Turbine — center behind profile photo */
+  .turbine-svg {
+    right: auto;
+    left: 50%;
+    top: 6%;
+    transform: translateX(-50%);
+  }
+
   /* Hero — stack single column, photo on top */
   .hero-grid {
     grid-template-columns: 1fr;
@@ -256,6 +268,11 @@ body {
   }
   .hero-profile-col {
     order: -1;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .hero-text-block {
+    min-width: 0;
   }
   .hero-buttons,
   .hero-socials {
@@ -264,6 +281,7 @@ body {
   .hero-text-block p {
     margin-left: auto;
     margin-right: auto;
+    max-width: 100%;
   }
   .profile-scale-wrap {
     transform: scale(0.72);

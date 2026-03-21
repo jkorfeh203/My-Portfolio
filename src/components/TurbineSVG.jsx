@@ -8,7 +8,8 @@ export default function TurbineSVG() {
       width="300"
       height="300"
       viewBox="0 0 300 300"
-      style={{ opacity: 0.08, position: "absolute", right: "5%", top: "15%" }}
+      className="turbine-svg"
+      style={{ opacity: 0.08, position: "absolute" }}
     >
       <style>{style}</style>
       <g className="blade-group">
