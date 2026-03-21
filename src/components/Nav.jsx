@@ -162,8 +162,7 @@ export default function Nav({ activeSection, scrolled, scrollTo }) {
               color: activeSection === s ? "var(--accent)" : "var(--text-primary)",
               transition: "color 0.2s ease, transform 0.2s ease",
               opacity: 0,
-              animation: menuOpen ? `fadeUp 0.4s ease forwards` : "none",
-              animationDelay: `${i * 60}ms`,
+              animation: menuOpen ? `fadeUp 0.4s ease ${i * 60}ms forwards` : "none",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = "var(--accent)";
