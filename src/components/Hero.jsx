@@ -435,9 +435,7 @@ export default function Hero({ heroVisible, scrollTo, onCvDownload }) {
                 View Research
               </button>
 
-              <a
-                href={CV_PATH}
-                download
+              <button
                 onClick={() => onCvDownload && onCvDownload()}
                 style={{
                   display: "flex",
@@ -453,7 +451,6 @@ export default function Hero({ heroVisible, scrollTo, onCvDownload }) {
                   fontWeight: 600,
                   cursor: "pointer",
                   letterSpacing: 0.5,
-                  textDecoration: "none",
                   transition: "all 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
@@ -479,7 +476,7 @@ export default function Hero({ heroVisible, scrollTo, onCvDownload }) {
                   <line x1="12" y1="15" x2="12" y2="3"/>
                 </svg>
                 Download CV
-              </a>
+              </button>
 
               <button
                 onClick={() => scrollTo("contact")}

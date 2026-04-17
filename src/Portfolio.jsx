@@ -12,6 +12,7 @@ import Achievements from "./components/Achievements";
 import Testimonials from "./components/Testimonials";
 import Gallery from "./components/Gallery";
 import Contact from "./components/Contact";
+import CVRequestModal from "./components/CVRequestModal";
 import Footer from "./components/Footer";
 import Preloader from "./components/Preloader";
 import ScrollProgress from "./components/ScrollProgress";
@@ -27,6 +28,7 @@ function PortfolioInner() {
   const [scrolled, setScrolled] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
   const [toast, setToast] = useState({ visible: false, message: "" });
+  const [cvModalOpen, setCvModalOpen] = useState(false);
 
   const [aboutRef, aboutVis] = useReveal();
   const [resRef, resVis] = useReveal();
@@ -82,7 +84,7 @@ function PortfolioInner() {
       <Cursor />
       <ScrollProgress />
       <Nav activeSection={activeSection} scrolled={scrolled} scrollTo={scrollTo} />
-      <Hero heroVisible={heroVisible} scrollTo={scrollTo} onCvDownload={() => showToast("CV download started!")} />
+      <Hero heroVisible={heroVisible} scrollTo={scrollTo} onCvDownload={() => setCvModalOpen(true)} />
       <About aboutRef={aboutRef} aboutVis={aboutVis} />
       <Research resRef={resRef} resVis={resVis} />
       <Skills skillRef={skillRef} skillVis={skillVis} />
@@ -96,6 +98,7 @@ function PortfolioInner() {
       <ThemePalette />
       <BackToTop />
       <Toast message={toast.message} visible={toast.visible} onHide={hideToast} />
+      {cvModalOpen && <CVRequestModal onClose={() => setCvModalOpen(false)} />}
     </div>
   );
 }
