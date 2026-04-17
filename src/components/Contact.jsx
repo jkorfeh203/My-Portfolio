@@ -176,6 +176,17 @@ export default function Contact({ conRef, conVis }) {
           0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(34,197,94,0.75); }
           50%       { opacity: 0.6; box-shadow: 0 0 14px rgba(34,197,94,0.4); }
         }
+        .contact-illustration { display: flex; }
+        .contact-calendar-mobile { display: none; }
+        @media (max-width: 768px) {
+          .contact-grid {
+            grid-template-columns: 1fr !important;
+            gap: 28px !important;
+          }
+          .contact-illustration { display: none !important; }
+          .contact-calendar-embed { display: none !important; }
+          .contact-calendar-mobile { display: flex !important; }
+        }
       `}</style>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <SectionTitle label="Contact" number={8} />
@@ -418,6 +429,7 @@ export default function Contact({ conRef, conVis }) {
 
             {/* Engineering schematic illustration */}
             <div
+              className="contact-illustration"
               style={{
                 flex: 1,
                 marginTop: 12,
@@ -425,7 +437,6 @@ export default function Contact({ conRef, conVis }) {
                 border: "1px solid rgba(var(--accent-rgb),0.1)",
                 borderRadius: 12,
                 overflow: "hidden",
-                display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 minHeight: 160,
@@ -630,7 +641,71 @@ export default function Contact({ conRef, conVis }) {
                 </div>
               </div>
             ) : (
+              <>
+              {/* Mobile CTA — shown only on small screens */}
               <div
+                className="contact-calendar-mobile"
+                style={{
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 16,
+                  background: "var(--bg-card)",
+                  border: "1px solid rgba(var(--accent-rgb),0.12)",
+                  borderRadius: 12,
+                  padding: "32px 24px",
+                  textAlign: "center",
+                }}
+              >
+                <div style={{ color: "var(--accent)" }}>
+                  <Calendar size={36} strokeWidth={1.5} />
+                </div>
+                <div>
+                  <p style={{
+                    fontFamily: "'Outfit', sans-serif",
+                    fontSize: 16,
+                    fontWeight: 700,
+                    color: "var(--text-primary)",
+                    marginBottom: 8,
+                  }}>
+                    Book a Google Meet
+                  </p>
+                  <p style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: 13,
+                    color: "var(--text-muted)",
+                    lineHeight: 1.7,
+                    marginBottom: 20,
+                  }}>
+                    Pick a free slot from John's live calendar. You'll both receive a confirmation with a Meet link.
+                  </p>
+                </div>
+                <a
+                  href={BOOKING_SHORT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    background: "linear-gradient(135deg, var(--accent), var(--accent-dark))",
+                    color: "var(--bg)",
+                    textDecoration: "none",
+                    padding: "13px 28px",
+                    borderRadius: 50,
+                    fontFamily: "'Outfit', sans-serif",
+                    fontSize: 14,
+                    fontWeight: 700,
+                    letterSpacing: 0.5,
+                  }}
+                >
+                  <Calendar size={15} strokeWidth={2} />
+                  Open Booking Calendar
+                </a>
+              </div>
+
+              {/* Desktop iframe — hidden on mobile */}
+              <div
+                className="contact-calendar-embed"
                 style={{
                   background: "var(--bg-card)",
                   border: "1px solid rgba(var(--accent-rgb),0.12)",
@@ -755,6 +830,7 @@ export default function Contact({ conRef, conVis }) {
                   </span>
                 </div>
               </div>
+              </>
             )}
           </div>
         </div>
