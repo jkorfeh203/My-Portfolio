@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function SlideshowModal({ item, onClose }) {
   const [index, setIndex]   = useState(0);
@@ -89,9 +90,7 @@ export default function SlideshowModal({ item, onClose }) {
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(var(--accent-rgb),0.3)"; e.currentTarget.style.color = "var(--text-muted)"; }}
           >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
+            <X size={12} strokeWidth={2.5} />
           </button>
         </div>
       </div>
@@ -123,9 +122,7 @@ export default function SlideshowModal({ item, onClose }) {
             onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(var(--accent-rgb),0.12)"; e.currentTarget.style.borderColor = "var(--accent)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(var(--bg-rgb),0.85)"; e.currentTarget.style.borderColor = "rgba(var(--accent-rgb),0.3)"; }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="15 18 9 12 15 6"/>
-            </svg>
+            <ChevronLeft size={16} strokeWidth={2.5} />
           </button>
         )}
 
@@ -183,9 +180,7 @@ export default function SlideshowModal({ item, onClose }) {
             onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(var(--accent-rgb),0.12)"; e.currentTarget.style.borderColor = "var(--accent)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(var(--bg-rgb),0.85)"; e.currentTarget.style.borderColor = "rgba(var(--accent-rgb),0.3)"; }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6"/>
-            </svg>
+            <ChevronRight size={16} strokeWidth={2.5} />
           </button>
         )}
       </div>

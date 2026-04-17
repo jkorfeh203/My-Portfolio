@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import { SECTIONS } from "../constants";
 
 export default function Nav({ activeSection, scrolled, scrollTo }) {
@@ -106,11 +107,7 @@ export default function Nav({ activeSection, scrolled, scrollTo }) {
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <line x1="3" y1="6"  x2="21" y2="6"/>
-              <line x1="3" y1="12" x2="21" y2="12"/>
-              <line x1="3" y1="18" x2="21" y2="18"/>
-            </svg>
+            <Menu size={24} strokeWidth={2} />
           </button>
         </div>
       </nav>
@@ -123,10 +120,7 @@ export default function Nav({ activeSection, scrolled, scrollTo }) {
           onClick={() => setMenuOpen(false)}
           aria-label="Close menu"
         >
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6"  y1="6" x2="18" y2="18"/>
-          </svg>
+          <X size={28} strokeWidth={2} />
         </button>
 
         {/* Logo inside overlay */}

@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
+import { Mail, Linkedin, Facebook } from "lucide-react";
 import TurbineSVG from "./TurbineSVG";
 import FlowLines from "./FlowLines";
 import Typewriter from "./Typewriter";
+import { CV_PATH } from "../constants";
 
 const ROLES = [
   "Mechanical Engineer",
@@ -55,27 +57,17 @@ const SOCIAL_LINKS = [
   {
     href: "mailto:johnkorfeh2017@gmail.com",
     label: "Email",
-    icon: (
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="4" width="20" height="16" rx="2"/>
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-      </svg>
-    ),
+    icon: <Mail size={17} strokeWidth={2} />,
   },
   {
     href: "https://linkedin.com/in/john-korfeh-a2087029b/",
     label: "LinkedIn",
-    icon: (
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-        <rect x="2" y="9" width="4" height="12"/>
-        <circle cx="4" cy="4" r="2"/>
-      </svg>
-    ),
+    icon: <Linkedin size={17} />,
   },
   {
     href: "https://orcid.org/0009-0004-7323-3507",
     label: "ORCID",
+    // No lucide equivalent — using a minimal link icon substitute
     icon: (
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
@@ -86,24 +78,15 @@ const SOCIAL_LINKS = [
   {
     href: "https://www.facebook.com/share/1B93DNL26P/?mibextid=wwXIfr",
     label: "Facebook",
-    icon: (
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-      </svg>
-    ),
+    icon: <Facebook size={17} />,
   },
   {
     href: "https://www.researchgate.net/profile/John-Korfeh",
     label: "ResearchGate",
+    // No lucide equivalent — brand text mark
     icon: (
       <svg width="20" height="16" viewBox="0 0 20 16" fill="currentColor">
-        <text
-          x="0" y="14"
-          fontFamily="'Outfit', sans-serif"
-          fontSize="15"
-          fontWeight="800"
-          letterSpacing="-1"
-        >RG</text>
+        <text x="0" y="14" fontFamily="'Outfit', sans-serif" fontSize="15" fontWeight="800" letterSpacing="-1">RG</text>
       </svg>
     ),
   },
@@ -453,7 +436,7 @@ export default function Hero({ heroVisible, scrollTo, onCvDownload }) {
               </button>
 
               <a
-                href="/John_T_Korfeh_RESUME.pdf"
+                href={CV_PATH}
                 download
                 onClick={() => onCvDownload && onCvDownload()}
                 style={{

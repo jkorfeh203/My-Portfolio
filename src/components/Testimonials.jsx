@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import SectionTitle from "./SectionTitle";
 import drRamesh from "../assets/testimonials/dr-ramesh.jpeg";
 import drBhavesh from "../assets/testimonials/dr-bhavesh.jpeg";
@@ -223,10 +224,16 @@ export default function Testimonials({ tesRef, tesVis }) {
         >
           {/* ── Card stage ── */}
           <div
-            style={{ position: "relative", overflow: "hidden", borderRadius: 16, minHeight: 320 }}
+            style={{ position: "relative", overflow: "hidden", borderRadius: 16 }}
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
+            {/* Height anchor — always in flow, invisible, sized to the longest card.
+                This is what determines the stage height so it never shifts. */}
+            <div style={{ visibility: "hidden", pointerEvents: "none" }} aria-hidden="true">
+              <Card data={TESTIMONIALS.reduce((a, b) => a.quote.length >= b.quote.length ? a : b)} />
+            </div>
+
             {/* Outgoing card */}
             {outgoing !== null && (
               <div
@@ -247,10 +254,11 @@ export default function Testimonials({ tesRef, tesVis }) {
             <div
               key={`in-${current}`}
               style={{
+                position: "absolute",
+                inset: 0,
                 animation: animating
                   ? `${inKF} 0.6s cubic-bezier(0.16,1,0.3,1) forwards`
                   : "none",
-                position: "relative",
                 zIndex: 2,
               }}
             >
@@ -306,9 +314,7 @@ export default function Testimonials({ tesRef, tesVis }) {
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginTop: 28 }}>
             {/* Prev */}
             <NavButton onClick={handlePrev} disabled={animating}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
+              <ChevronLeft size={14} strokeWidth={2.5} />
             </NavButton>
 
             {/* Dots */}
@@ -334,9 +340,7 @@ export default function Testimonials({ tesRef, tesVis }) {
 
             {/* Next */}
             <NavButton onClick={handleNext} disabled={animating}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
+              <ChevronRight size={14} strokeWidth={2.5} />
             </NavButton>
           </div>
 
@@ -372,7 +376,7 @@ function Card({ data }) {
         position: "relative",
         overflow: "hidden",
         boxShadow: "0 8px 40px rgba(0,0,0,0.35)",
-        minHeight: 320,
+        height: "100%",
       }}
     >
       {/* Top accent line */}

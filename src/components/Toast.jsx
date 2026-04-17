@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Check } from "lucide-react";
 
 export default function Toast({ message, visible, onHide }) {
   const timerRef = useRef(null);
@@ -49,9 +50,7 @@ export default function Toast({ message, visible, onHide }) {
           color: "#d4a853",
         }}
       >
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="20 6 9 17 4 12" />
-        </svg>
+        <Check size={13} strokeWidth={3} />
       </div>
       <span
         style={{
