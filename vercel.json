@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/JTK_cv_2025_secure.pdf",
+      "destination": "/",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

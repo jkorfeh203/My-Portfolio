@@ -3,7 +3,6 @@ import { Mail, Linkedin, Facebook } from "lucide-react";
 import TurbineSVG from "./TurbineSVG";
 import FlowLines from "./FlowLines";
 import Typewriter from "./Typewriter";
-import { CV_PATH } from "../constants";
 
 const ROLES = [
   "Mechanical Engineer",
