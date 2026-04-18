@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, GraduationCap, Globe, Zap, Calendar } from "lucide-react";
+import { Mail, GraduationCap, Globe, Zap, Calendar, BookOpen } from "lucide-react";
 import SectionTitle from "./SectionTitle";
 import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY } from "../constants";
 
@@ -64,102 +64,143 @@ const CALL_TYPES = [
     desc: "Technical discussion on sustainable energy projects or ANSYS simulation.",
     duration: "60 min",
   },
+  {
+    Icon: BookOpen,
+    title: "Research Statement Review",
+    desc: "Feedback on your SOP or personal statement for MS/PhD applications.",
+    duration: "30 min",
+  },
 ];
 
 const CTA_TAGS = ["ASME", "IEEE", "ESL"];
 const isPlaceholder = BOOKING_URL.includes("REPLACE_WITH");
 
-// ── Engineering schematic illustration ────────────────────────────────────────
-function TurbineSchematic() {
-  const accent = "rgba(var(--accent-rgb),";
+// ── Contact illustration — person at desk ─────────────────────────────────────
+function ContactIllustration() {
+  const a = "rgba(var(--accent-rgb),";
   return (
-    <svg
-      viewBox="0 0 380 220"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ width: "100%", height: "100%" }}
-      aria-hidden="true"
-    >
-      {/* Corner bracket accents */}
-      <path d="M8 8 L8 22 M8 8 L22 8"       stroke={`${accent}0.25)`} strokeWidth="1.2" strokeLinecap="square" />
-      <path d="M372 8 L372 22 M372 8 L358 8" stroke={`${accent}0.25)`} strokeWidth="1.2" strokeLinecap="square" />
-      <path d="M8 212 L8 198 M8 212 L22 212" stroke={`${accent}0.25)`} strokeWidth="1.2" strokeLinecap="square" />
-      <path d="M372 212 L372 198 M372 212 L358 212" stroke={`${accent}0.25)`} strokeWidth="1.2" strokeLinecap="square" />
+    <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg"
+         style={{ width: "100%", height: "100%" }} aria-hidden="true">
 
-      {/* Background dot grid */}
-      {Array.from({ length: 6 }).map((_, row) =>
-        Array.from({ length: 11 }).map((_, col) => (
-          <circle key={`${row}-${col}`} cx={32 + col * 32} cy={20 + row * 36} r={1.2} fill={`${accent}0.1)`} />
+      {/* Corner brackets */}
+      <path d="M10 10 L10 26 M10 10 L26 10"     stroke={`${a}0.25)`} strokeWidth="1.2" strokeLinecap="square"/>
+      <path d="M390 10 L390 26 M390 10 L374 10"  stroke={`${a}0.25)`} strokeWidth="1.2" strokeLinecap="square"/>
+      <path d="M10 290 L10 274 M10 290 L26 290"  stroke={`${a}0.25)`} strokeWidth="1.2" strokeLinecap="square"/>
+      <path d="M390 290 L390 274 M390 290 L374 290" stroke={`${a}0.25)`} strokeWidth="1.2" strokeLinecap="square"/>
+
+      {/* Dot grid */}
+      {Array.from({length: 5}).map((_, row) =>
+        Array.from({length: 9}).map((_, col) => (
+          <circle key={`${row}-${col}`} cx={40 + col*40} cy={30 + row*52} r={1.2} fill={`${a}0.1)`}/>
         ))
       )}
 
-      {/* Dashed centre lines */}
-      <line x1="190" y1="18" x2="190" y2="202" stroke={`${accent}0.18)`} strokeWidth="0.8" strokeDasharray="4 3" />
-      <line x1="28"  y1="110" x2="352" y2="110" stroke={`${accent}0.18)`} strokeWidth="0.8" strokeDasharray="4 3" />
+      {/* ── CHAIR BACK ── */}
+      <rect x="168" y="148" width="64" height="72" rx="12"
+            fill={`${a}0.05)`} stroke={`${a}0.18)`} strokeWidth="1"/>
 
-      {/* Outer rotor ring */}
-      <circle cx="190" cy="110" r="74" stroke={`${accent}0.3)`}  strokeWidth="1.2" />
-      {/* Hub ring */}
-      <circle cx="190" cy="110" r="20" stroke={`${accent}0.45)`} strokeWidth="1.4" />
-      {/* Hub centre dot */}
-      <circle cx="190" cy="110" r="5"  fill={`${accent}0.45)`} />
+      {/* ── PERSON ── */}
+      {/* Shoulders / torso */}
+      <path d="M158 165 C158 148 174 140 200 140 C226 140 242 148 242 165 L242 178 L158 178 Z"
+            fill={`${a}0.1)`} stroke={`${a}0.38)`} strokeWidth="1.3"/>
+      {/* Neck */}
+      <rect x="193" y="128" width="14" height="16" rx="4"
+            fill={`${a}0.1)`} stroke={`${a}0.3)`} strokeWidth="1"/>
+      {/* Head */}
+      <circle cx="200" cy="106" r="26"
+              fill={`${a}0.1)`} stroke={`${a}0.45)`} strokeWidth="1.4"/>
+      {/* Hair */}
+      <path d="M174 102 C174 82 186 70 200 70 C214 70 226 82 226 102"
+            fill={`${a}0.18)`} stroke={`${a}0.38)`} strokeWidth="1" strokeLinejoin="round"/>
+      {/* Eyes */}
+      <circle cx="191" cy="108" r="2.5" fill={`${a}0.55)`}/>
+      <circle cx="209" cy="108" r="2.5" fill={`${a}0.55)`}/>
+      {/* Smile */}
+      <path d="M193 118 Q200 124 207 118" stroke={`${a}0.45)`} strokeWidth="1.3"
+            fill="none" strokeLinecap="round"/>
 
-      {/* Blade 1 — top */}
-      <path
-        d="M186 92 C183 66 177 42 187 26 C193 20 200 28 197 48 C195 64 192 78 190 92 Z"
-        stroke={`${accent}0.55)`} strokeWidth="1.3" fill={`${accent}0.05)`}
-      />
-      {/* Blade 2 — right */}
-      <path
-        d="M208 114 C232 110 256 103 274 113 C280 120 272 127 254 125 C240 123 222 120 209 117 Z"
-        stroke={`${accent}0.55)`} strokeWidth="1.3" fill={`${accent}0.05)`}
-      />
-      {/* Blade 3 — bottom */}
-      <path
-        d="M194 128 C197 154 203 178 193 194 C187 200 180 192 182 174 C184 160 187 144 190 128 Z"
-        stroke={`${accent}0.55)`} strokeWidth="1.3" fill={`${accent}0.05)`}
-      />
-      {/* Blade 4 — left */}
-      <path
-        d="M172 106 C148 110 124 117 106 107 C100 100 108 93 126 95 C140 97 158 100 171 103 Z"
-        stroke={`${accent}0.55)`} strokeWidth="1.3" fill={`${accent}0.05)`}
-      />
+      {/* Left arm on desk */}
+      <path d="M163 170 Q148 188 136 220" stroke={`${a}0.3)`} strokeWidth="9"
+            strokeLinecap="round" fill="none"/>
+      {/* Right arm on desk */}
+      <path d="M237 170 Q252 188 264 220" stroke={`${a}0.3)`} strokeWidth="9"
+            strokeLinecap="round" fill="none"/>
 
-      {/* Rotation arc + arrowhead */}
-      <path d="M152 64 A52 52 0 0 1 228 64" stroke={`${accent}0.38)`} strokeWidth="1" fill="none" strokeDasharray="3 2.5" />
-      <polygon points="228,64 220,58 224,71" fill={`${accent}0.38)`} />
-      {/* ω label */}
-      <text x="183" y="58" fontSize="12" fill={`${accent}0.55)`} fontFamily="Georgia,serif" fontStyle="italic">ω</text>
+      {/* ── LAPTOP ── */}
+      {/* Screen */}
+      <rect x="130" y="138" width="140" height="84" rx="7"
+            fill={`${a}0.08)`} stroke={`${a}0.42)`} strokeWidth="1.3"/>
+      {/* Screen bezel */}
+      <rect x="138" y="146" width="124" height="68" rx="4"
+            fill={`${a}0.06)`} stroke={`${a}0.15)`} strokeWidth="0.8"/>
+      {/* Screen content lines */}
+      <rect x="148" y="158" width="55" height="5" rx="2.5" fill={`${a}0.45)`}/>
+      <rect x="148" y="168" width="88" height="4" rx="2"   fill={`${a}0.22)`}/>
+      <rect x="148" y="177" width="70" height="4" rx="2"   fill={`${a}0.18)`}/>
+      <rect x="148" y="186" width="48" height="4" rx="2"   fill={`${a}0.14)`}/>
+      {/* Cursor */}
+      <rect x="220" y="158" width="2" height="11" rx="1"   fill={`${a}0.75)`}/>
+      {/* Base */}
+      <rect x="124" y="222" width="152" height="8" rx="3"
+            fill={`${a}0.12)`} stroke={`${a}0.38)`} strokeWidth="1.2"/>
+      {/* Hinge dot */}
+      <circle cx="200" cy="222" r="3" fill={`${a}0.3)`}/>
 
-      {/* Incoming flow arrows — left */}
-      {[90, 108, 126].map((y, i) => (
-        <g key={i}>
-          <line x1="28" y1={y} x2="60" y2={y} stroke={`${accent}0.42)`} strokeWidth="1.1" />
-          <polygon points={`60,${y} 53,${y - 4} 53,${y + 4}`} fill={`${accent}0.42)`} />
-        </g>
-      ))}
-      <text x="10" y="88" fontSize="9" fill={`${accent}0.45)`} fontFamily="'JetBrains Mono',monospace">V₁</text>
+      {/* ── DESK ── */}
+      <rect x="28" y="230" width="344" height="12" rx="3"
+            fill={`${a}0.08)`} stroke={`${a}0.35)`} strokeWidth="1.2"/>
+      <rect x="54"  y="242" width="10" height="44" rx="2"
+            fill={`${a}0.06)`} stroke={`${a}0.22)`} strokeWidth="1"/>
+      <rect x="336" y="242" width="10" height="44" rx="2"
+            fill={`${a}0.06)`} stroke={`${a}0.22)`} strokeWidth="1"/>
 
-      {/* Outgoing flow arrows — right */}
-      {[90, 108, 126].map((y, i) => (
-        <g key={i}>
-          <line x1="320" y1={y} x2="352" y2={y} stroke={`${accent}0.28)`} strokeWidth="1.1" />
-          <polygon points={`352,${y} 345,${y - 4} 345,${y + 4}`} fill={`${accent}0.28)`} />
-        </g>
-      ))}
-      <text x="354" y="88" fontSize="9" fill={`${accent}0.3)`} fontFamily="'JetBrains Mono',monospace">V₂</text>
+      {/* ── COFFEE MUG (left of desk) ── */}
+      <rect x="58" y="212" width="26" height="18" rx="3"
+            fill={`${a}0.1)`} stroke={`${a}0.35)`} strokeWidth="1.1"/>
+      <path d="M84 217 Q93 217 93 221 Q93 225 84 225"
+            stroke={`${a}0.35)`} strokeWidth="1.1" fill="none"/>
+      {/* Steam wisps */}
+      <path d="M67 208 Q69 202 67 196" stroke={`${a}0.22)`} strokeWidth="1"
+            fill="none" strokeLinecap="round"/>
+      <path d="M74 208 Q76 201 74 195" stroke={`${a}0.22)`} strokeWidth="1"
+            fill="none" strokeLinecap="round"/>
 
-      {/* Diameter dimension line */}
-      <line x1="116" y1="192" x2="264" y2="192" stroke={`${accent}0.25)`} strokeWidth="0.8" />
-      <line x1="116" y1="188" x2="116" y2="196" stroke={`${accent}0.25)`} strokeWidth="0.8" />
-      <line x1="264" y1="188" x2="264" y2="196" stroke={`${accent}0.25)`} strokeWidth="0.8" />
-      <text x="162" y="206" fontSize="9" fill={`${accent}0.3)`} fontFamily="'JetBrains Mono',monospace">D = 2r</text>
+      {/* ── PLANT (right of desk) ── */}
+      <path d="M314 228 L322 230 L306 230 Z"
+            fill={`${a}0.22)`} stroke={`${a}0.35)`} strokeWidth="1"/>
+      <line x1="314" y1="228" x2="314" y2="205"
+            stroke={`${a}0.35)`} strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M314 216 Q304 208 300 197 Q311 200 314 216"
+            fill={`${a}0.15)`} stroke={`${a}0.28)`} strokeWidth="1"/>
+      <path d="M314 210 Q324 202 328 191 Q317 194 314 210"
+            fill={`${a}0.15)`} stroke={`${a}0.28)`} strokeWidth="1"/>
 
-      {/* CFD label — bottom right */}
-      <text x="306" y="198" fontSize="9" fill={`${accent}0.28)`} fontFamily="'JetBrains Mono',monospace" letterSpacing="2">CFD</text>
+      {/* ── FLOATING ENVELOPE (top right) ── */}
+      <rect x="302" y="48" width="60" height="44" rx="6"
+            fill={`${a}0.08)`} stroke={`${a}0.42)`} strokeWidth="1.3"/>
+      <path d="M302 54 L332 76 L362 54"
+            stroke={`${a}0.48)`} strokeWidth="1.3" fill="none"
+            strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Floating dots above envelope */}
+      <circle cx="332" cy="34" r="3.5" fill={`${a}0.28)`}/>
+      <circle cx="343" cy="26" r="2.5" fill={`${a}0.18)`}/>
+      <circle cx="352" cy="19" r="1.8" fill={`${a}0.12)`}/>
+
+      {/* ── CHAT BUBBLE (top left) ── */}
+      <rect x="38" y="44" width="76" height="48" rx="11"
+            fill={`${a}0.08)`} stroke={`${a}0.38)`} strokeWidth="1.3"/>
+      <path d="M62 92 L54 106 L76 92"
+            fill={`${a}0.08)`} stroke={`${a}0.38)`} strokeWidth="1.3"
+            strokeLinejoin="round"/>
+      {/* Lines in bubble */}
+      <rect x="50" y="57" width="52" height="4" rx="2" fill={`${a}0.35)`}/>
+      <rect x="50" y="66" width="38" height="4" rx="2" fill={`${a}0.22)`}/>
+      <rect x="50" y="75" width="45" height="4" rx="2" fill={`${a}0.18)`}/>
     </svg>
   );
 }
+
+// TurbineSchematic moved to ./TurbineSchematic.jsx — import it when needed
 
 export default function Contact({ conRef, conVis }) {
   const [frameLoaded, setFrameLoaded] = useState(false);
@@ -443,7 +484,7 @@ export default function Contact({ conRef, conVis }) {
                 padding: "16px 12px",
               }}
             >
-              <TurbineSchematic />
+              <ContactIllustration />
             </div>
           </div>
 
