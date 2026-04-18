@@ -474,7 +474,7 @@ export default function Hero({ heroVisible, scrollTo, onCvDownload }) {
                   <polyline points="7 10 12 15 17 10"/>
                   <line x1="12" y1="15" x2="12" y2="3"/>
                 </svg>
-                Download CV
+                Request CV
               </button>
 
               <button
