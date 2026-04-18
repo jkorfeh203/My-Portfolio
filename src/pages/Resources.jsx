@@ -452,20 +452,6 @@ export default function Resources() {
             {filteredSch.map(s => <ScholarshipCard key={s.id} s={s} />)}
           </div>
 
-          {/* Add new note for John */}
-          <div style={{
-            marginTop: 32,
-            padding: "16px 20px",
-            background: "rgba(var(--accent-rgb),0.04)",
-            border: "1px dashed rgba(var(--accent-rgb),0.2)",
-            borderRadius: 10,
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: 11,
-            color: "var(--text-dim)",
-            letterSpacing: 0.5,
-          }}>
-            💡 To add a scholarship: edit <code style={{ color: "var(--accent)" }}>src/data/scholarships.json</code> on GitHub and commit — the page updates automatically.
-          </div>
         </div>
       </section>
 
@@ -521,20 +507,6 @@ export default function Resources() {
             {filteredTrends.map(t => <TrendCard key={t.id} t={t} />)}
           </div>
 
-          {/* Add new note for John */}
-          <div style={{
-            marginTop: 32,
-            padding: "16px 20px",
-            background: "rgba(var(--accent-rgb),0.04)",
-            border: "1px dashed rgba(var(--accent-rgb),0.2)",
-            borderRadius: 10,
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: 11,
-            color: "var(--text-dim)",
-            letterSpacing: 0.5,
-          }}>
-            💡 To add a trend: edit <code style={{ color: "var(--accent)" }}>src/data/trends.json</code> on GitHub and commit — the page updates automatically.
-          </div>
         </div>
       </section>
 

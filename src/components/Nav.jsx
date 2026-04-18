@@ -152,14 +152,16 @@ export default function Nav({ activeSection, scrolled, scrollTo }) {
             )}
           </div>
 
-          {/* Hamburger — mobile only */}
-          <button
-            className="nav-hamburger"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open menu"
-          >
-            <Menu size={24} strokeWidth={2} />
-          </button>
+          {/* Hamburger — mobile only, hidden on resources page */}
+          {!isResources && (
+            <button
+              className="nav-hamburger"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu size={24} strokeWidth={2} />
+            </button>
+          )}
         </div>
       </nav>
 
