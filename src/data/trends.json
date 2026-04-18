@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Physics-Informed Neural Networks Are Replacing Traditional CFD Solvers",
+    "category": "ai",
+    "summary": "PINNs embed physical laws directly into neural network training, slashing CFD simulation time from hours to seconds. Aerospace and energy sectors are adopting them for turbine and airfoil design at scale.",
+    "source": "Nature Computational Science",
+    "date": "2026-02-14",
+    "link": "https://www.nature.com/natcomputsci",
+    "tags": ["CFD", "Neural Networks", "Simulation"]
+  },
+  {
+    "id": 2,
+    "title": "AI Digital Twins Cut Wind Farm Downtime by 35%",
+    "category": "ai",
+    "summary": "Digital twin models powered by machine learning now predict mechanical failures in wind turbines before they happen. Siemens and Vestas report a 35% reduction in unplanned maintenance downtime across offshore fleets.",
+    "source": "Renewable Energy Journal",
+    "date": "2026-01-28",
+    "link": "https://www.journals.elsevier.com/renewable-energy",
+    "tags": ["Digital Twins", "Wind Energy", "Predictive Maintenance"]
+  },
+  {
+    "id": 3,
+    "title": "Generative AI Designs Novel Heat Exchanger Geometries Humans Never Considered",
+    "category": "ai",
+    "summary": "Using diffusion models trained on thermodynamic simulations, researchers generated heat exchanger designs that outperform conventional geometries by up to 28% in thermal efficiency — shapes no engineer had previously explored.",
+    "source": "Applied Thermal Engineering",
+    "date": "2025-11-03",
+    "link": "https://www.sciencedirect.com/journal/applied-thermal-engineering",
+    "tags": ["Generative AI", "Heat Transfer", "Design"]
+  },
+  {
+    "id": 4,
+    "title": "Reinforcement Learning Optimizes Gas Turbine Fuel Mix in Real Time",
+    "category": "ai",
+    "summary": "DeepMind-style reinforcement learning agents are now deployed in industrial gas turbines to dynamically adjust fuel-air mixtures, reducing NOx emissions by 15% while maintaining peak power output.",
+    "source": "Energy & AI (Elsevier)",
+    "date": "2026-03-07",
+    "link": "https://www.sciencedirect.com/journal/energy-and-ai",
+    "tags": ["Reinforcement Learning", "Gas Turbines", "Emissions"]
+  },
+  {
+    "id": 5,
+    "title": "Green Hydrogen Production Costs Fall Below $2/kg for the First Time",
+    "category": "mechanical",
+    "summary": "Advances in electrolysis membrane technology and scale-up of offshore wind capacity have pushed green hydrogen production costs below the critical $2/kg threshold, making it cost-competitive with grey hydrogen in some markets.",
+    "source": "International Journal of Hydrogen Energy",
+    "date": "2026-02-22",
+    "link": "https://www.sciencedirect.com/journal/international-journal-of-hydrogen-energy",
+    "tags": ["Hydrogen", "Electrolysis", "Clean Energy"]
+  },
+  {
+    "id": 6,
+    "title": "Floating Offshore Wind Turbines Reach 20 MW Capacity",
+    "category": "mechanical",
+    "summary": "Next-generation floating platforms now support turbines exceeding 20 MW. Structural innovations in spar-buoy and tension-leg designs are enabling deployment in deep-water sites previously inaccessible to fixed-bottom foundations.",
+    "source": "Wind Energy (Wiley)",
+    "date": "2025-12-11",
+    "link": "https://onlinelibrary.wiley.com/journal/10991824",
+    "tags": ["Wind Turbines", "Offshore", "Structural Engineering"]
+  },
+  {
+    "id": 7,
+    "title": "Molten Salt Thermal Storage Extends Solar Plant Output to 24/7",
+    "category": "mechanical",
+    "summary": "New molten salt formulations with operating temperatures above 600°C are enabling concentrated solar plants to store energy for up to 18 hours, effectively delivering round-the-clock dispatchable power without batteries.",
+    "source": "Solar Energy Materials and Solar Cells",
+    "date": "2026-01-15",
+    "link": "https://www.sciencedirect.com/journal/solar-energy-materials-and-solar-cells",
+    "tags": ["Thermal Storage", "Solar Energy", "CSP"]
+  },
+  {
+    "id": 8,
+    "title": "Bio-Inspired Shark Skin Surfaces Reduce Turbine Blade Drag by 10%",
+    "category": "mechanical",
+    "summary": "Micro-riblet surfaces modeled on shark denticles are being applied to wind turbine blades and aircraft wings. Field trials show consistent 8–10% drag reduction and measurable annual energy yield improvements.",
+    "source": "Bioinspiration & Biomimetics (IOP)",
+    "date": "2025-10-29",
+    "link": "https://iopscience.iop.org/journal/1748-3190",
+    "tags": ["Biomimetics", "Aerodynamics", "Turbine Blades"]
+  }
+]

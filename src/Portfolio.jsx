@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { SECTIONS } from "./constants";
 import { useReveal } from "./hooks/useReveal";
-import { ThemeProvider } from "./context/ThemeContext";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -104,9 +103,5 @@ function PortfolioInner() {
 }
 
 export default function Portfolio() {
-  return (
-    <ThemeProvider>
-      <PortfolioInner />
-    </ThemeProvider>
-  );
+  return <PortfolioInner />;
 }
