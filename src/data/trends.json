@@ -78,5 +78,15 @@
     "date": "2025-10-29",
     "link": "https://iopscience.iop.org/journal/1748-3190",
     "tags": ["Biomimetics", "Aerodynamics", "Turbine Blades"]
+  },
+  {
+    "id": 9,
+    "title": "Solid-State Batteries Poised to Replace Lithium-Ion in Grid Storage",
+    "category": "mechanical",
+    "summary": "Advances in ceramic electrolyte manufacturing have pushed solid-state battery energy density beyond 400 Wh/kg — nearly double current lithium-ion cells. Pilot grid storage installations in Japan and South Korea are reporting zero thermal runaway incidents over 18-month trials.",
+    "source": "Journal of Power Sources (Elsevier)",
+    "date": "2026-03-18",
+    "link": "https://www.sciencedirect.com/journal/journal-of-power-sources",
+    "tags": ["Energy Storage", "Batteries", "Grid Technology"]
   }
 ]
