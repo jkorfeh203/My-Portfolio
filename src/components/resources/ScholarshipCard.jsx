@@ -2,6 +2,8 @@ import { ExternalLink, Calendar, MapPin } from "lucide-react";
 import { deadlineInfo } from "../../utils/deadline";
 import { tagStyle, cardBase, cardHoverOn, cardHoverOff } from "./styles";
 
+const dim = { color: "var(--text-dim)", fontStyle: "italic" };
+
 export default function ScholarshipCard({ s }) {
   const dl = deadlineInfo(s.deadline);
   return (
@@ -14,12 +16,13 @@ export default function ScholarshipCard({ s }) {
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
         <span style={tagStyle("region")}>
           <MapPin size={9} strokeWidth={2} style={{ marginRight: 3 }} />
-          {s.region}
+          {s.region || <span style={dim}>Region not specified</span>}
         </span>
-        <span style={tagStyle("field")}>{s.field === "Any" ? "All Fields" : s.field}</span>
-        {s.degree.map(d => (
-          <span key={d} style={tagStyle("degree")}>{d}</span>
-        ))}
+        <span style={tagStyle("field")}>{s.field === "Any" ? "All Fields" : (s.field || <span style={dim}>Field TBD</span>)}</span>
+        {(s.degree && s.degree.length > 0)
+          ? s.degree.map(d => <span key={d} style={tagStyle("degree")}>{d}</span>)
+          : <span style={{ ...tagStyle("degree"), ...dim }}>Degree TBD</span>
+        }
       </div>
 
       {/* Name + org */}
@@ -28,19 +31,21 @@ export default function ScholarshipCard({ s }) {
           fontFamily: "'Outfit', sans-serif",
           fontSize: 17,
           fontWeight: 800,
-          color: "var(--text-primary)",
+          color: s.name ? "var(--text-primary)" : "var(--text-dim)",
           marginBottom: 4,
           lineHeight: 1.3,
+          fontStyle: s.name ? "normal" : "italic",
         }}>
-          {s.name}
+          {s.name || "Untitled Scholarship"}
         </h3>
         <p style={{
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: 10,
           color: "var(--text-dim)",
           letterSpacing: 0.5,
+          fontStyle: s.organization ? "normal" : "italic",
         }}>
-          {s.organization}
+          {s.organization || "Organization not specified"}
         </p>
       </div>
 
@@ -49,20 +54,22 @@ export default function ScholarshipCard({ s }) {
         fontFamily: "'Outfit', sans-serif",
         fontSize: 20,
         fontWeight: 800,
-        color: "var(--accent)",
+        color: s.amount ? "var(--accent)" : "var(--text-dim)",
+        fontStyle: s.amount ? "normal" : "italic",
       }}>
-        {s.amount}
+        {s.amount || "Amount TBD"}
       </div>
 
       {/* Description */}
       <p style={{
         fontFamily: "'DM Sans', sans-serif",
         fontSize: 13,
-        color: "var(--text-muted)",
+        color: s.description ? "var(--text-muted)" : "var(--text-dim)",
         lineHeight: 1.7,
         flex: 1,
+        fontStyle: s.description ? "normal" : "italic",
       }}>
-        {s.description}
+        {s.description || "Description not available."}
       </p>
 
       {/* Footer */}

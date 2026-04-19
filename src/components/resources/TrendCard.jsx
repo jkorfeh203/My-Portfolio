@@ -32,8 +32,9 @@ export default function TrendCard({ t }) {
           fontSize: 9,
           color: "var(--text-dim)",
           letterSpacing: 0.5,
+          fontStyle: t.source ? "normal" : "italic",
         }}>
-          {t.source}
+          {t.source || "Source unknown"}
         </span>
       </div>
 
@@ -42,21 +43,23 @@ export default function TrendCard({ t }) {
         fontFamily: "'Outfit', sans-serif",
         fontSize: 15,
         fontWeight: 800,
-        color: "var(--text-primary)",
+        color: t.title ? "var(--text-primary)" : "var(--text-dim)",
         lineHeight: 1.4,
+        fontStyle: t.title ? "normal" : "italic",
       }}>
-        {t.title}
+        {t.title || "Untitled"}
       </h3>
 
       {/* Summary */}
       <p style={{
         fontFamily: "'DM Sans', sans-serif",
         fontSize: 13,
-        color: "var(--text-muted)",
+        color: t.summary ? "var(--text-muted)" : "var(--text-dim)",
         lineHeight: 1.75,
         flex: 1,
+        fontStyle: t.summary ? "normal" : "italic",
       }}>
-        {t.summary}
+        {t.summary || "Summary not available."}
       </p>
 
       {/* Tags */}
