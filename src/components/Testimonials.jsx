@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Linkedin } from "lucide-react";
 import SectionTitle from "./SectionTitle";
 import drRamesh from "../assets/testimonials/dr-ramesh.jpeg";
 import drBhavesh from "../assets/testimonials/dr-bhavesh.jpeg";
@@ -16,6 +16,7 @@ const TESTIMONIALS = [
     institution: "Marwadi University",
     initials: "RB",
     photo: drRamesh,
+    linkedin: "https://www.linkedin.com/in/ramesh-bhoraniya-phd-0aa853142",
   },
   {
     quote:
@@ -25,6 +26,7 @@ const TESTIMONIALS = [
     institution: "Marwadi University",
     initials: "BK",
     photo: drBhavesh,
+    linkedin: "https://www.linkedin.com/in/bhavesh-kanabar-54ab6021",
   },
   {
     quote:
@@ -34,19 +36,21 @@ const TESTIMONIALS = [
     institution: "Marwadi University",
     initials: "MS",
     photo: drMith,
+    linkedin: "https://www.linkedin.com/in/dr-meet-sheth-phd-91663488",
   },
   {
     quote:
       "Working alongside John during our research was a genuinely rewarding experience. From the moment he began learning ANSYS Fluent, it was clear he was not just picking up a tool. He was developing a methodology. He absorbed complex simulation concepts quickly, asked the right technical questions, and applied what he learned with a precision that would impress engineers well beyond his level. John has the mindset of a researcher and the discipline of a professional. I have no doubt he will thrive in any advanced research environment.",
     name: "Anand Gondchawar",
-    title: "Junior Research Fellow & PhD Candidate",
-    institution: "Dept. of Mechanical Engineering, Marwadi University",
+    title: "Junior Research Fellow & PhD Candidate, Dept. of Mechanical Engineering",
+    institution: "Marwadi University",
     initials: "AG",
     photo: anand,
+    linkedin: "https://www.linkedin.com/in/anand-gondchawar-998ab9126",
   },
   {
     quote:
-      "John's leadership of Y-LEAD Liberia reflects his commitment to community impact beyond the laboratory. He mentors students with genuine dedication and an infectious passion for engineering.",
+      "John came to Y-LEAD Liberia not because it was required of him, but because he genuinely believed engineering had a role to play in the lives of young Liberians. He led sessions, mentored students who had never seen the inside of a laboratory, and made complex ideas feel accessible to young people who had little reason to believe those fields were for them. What struck me most was not his technical knowledge, though that was evident, but his patience and conviction. He never treated mentorship as charity. He treated it as responsibility. John leaves a community better than he found it.",
     name: "Lahai S. Kamara",
     title: "National Coordinator",
     institution: "Y-LEAD Liberia",
@@ -446,14 +450,45 @@ function Card({ data }) {
           )}
         </div>
         <div>
-          <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: 15, fontWeight: 700, color: "var(--text-primary)", marginBottom: 3 }}>
-            {data.name}
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
+            <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: 15, fontWeight: 700, color: "var(--text-primary)" }}>
+              {data.name}
+            </span>
+            {data.linkedin && (
+              <a
+                href={data.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`${data.name} on LinkedIn`}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  color: "rgba(var(--accent-rgb),0.5)",
+                  transition: "color 0.2s ease",
+                }}
+                onMouseEnter={e => e.currentTarget.style.color = "var(--accent)"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(var(--accent-rgb),0.5)"}
+              >
+                <Linkedin size={13} strokeWidth={1.8} />
+              </a>
+            )}
           </div>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "var(--accent)", letterSpacing: 1.5, textTransform: "uppercase" }}>
             {data.title}
           </div>
           <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "var(--text-dim)", marginTop: 2 }}>
-            {data.institution}
+            {data.institution === "Marwadi University" ? (
+              <a
+                href="https://www.marwadiuniversity.ac.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--text-dim)", textDecoration: "none", transition: "color 0.2s ease" }}
+                onMouseEnter={e => e.currentTarget.style.color = "var(--accent)"}
+                onMouseLeave={e => e.currentTarget.style.color = "var(--text-dim)"}
+              >
+                {data.institution}
+              </a>
+            ) : data.institution}
           </div>
         </div>
       </div>
