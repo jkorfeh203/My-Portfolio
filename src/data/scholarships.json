@@ -128,5 +128,18 @@
     "description": "Supports students from developing countries pursuing graduate education in energy, sustainable development, and related engineering fields.",
     "link": "https://opecfund.org/",
     "tags": ["Energy", "Developing Countries", "Funded"]
+  },
+  {
+  "id": 11,
+  "name": "ETH Zurich Excellence Scholarship (ESOP)",
+  "organization": "ETH Zurich Foundation",
+  "field": "Computer Science",
+  "degree": ["MS"],
+  "amount": "CHF 12,000 / semester + full tuition waiver",
+  "deadline": "2026-11-30",
+  "region": "Switzerland",
+  "description": "Merit-based scholarship for outstanding international students pursuing a Master's at ETH Zurich. Covers full tuition and CHF 12,000 per semester for living and study costs, plus access to the ETH Foundation mentorship network.",
+  "link": "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html",
+  "tags": ["Fully Funded", "Merit-Based", "Prestigious"]
   }
 ]
