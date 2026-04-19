@@ -14,11 +14,10 @@ import SectionHeader from "../components/resources/SectionHeader";
 import scholarships from "../data/scholarships.json";
 import trends from "../data/trends.json";
 
-// Derive last updated from trends publish dates only (historical, never future)
-const trendDates = trends.map(t => new Date(t.date)).filter(d => !isNaN(d));
-const LAST_UPDATED = trendDates.length
-  ? new Date(Math.max(...trendDates)).toLocaleDateString("en-US", { month: "long", year: "numeric" })
-  : "2026";
+/* global __DATA_LAST_UPDATED__ */
+
+// Injected at build time from git log of the two data files
+const LAST_UPDATED = __DATA_LAST_UPDATED__;
 
 export default function Resources() {
   const [scrolled, setScrolled] = useState(false);

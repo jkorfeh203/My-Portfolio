@@ -1,4 +1,7 @@
 {
+  "rewrites": [
+    { "source": "/((?!.*\\.).*)", "destination": "/index.html" }
+  ],
   "redirects": [
     {
       "source": "/JTK_cv_2025_secure.pdf",
