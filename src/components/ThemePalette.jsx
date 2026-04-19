@@ -78,7 +78,7 @@ export default function ThemePalette() {
               outlineOffset: 2,
               cursor: "pointer",
               transition: "all 0.2s ease",
-              boxShadow: `0 2px 10px ${t.swatch}55`,
+              boxShadow: `0 2px 10px ${t.glowColor || t.swatch}55`,
               flexShrink: 0,
             }}
             onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.2)"; }}

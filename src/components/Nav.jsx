@@ -71,7 +71,7 @@ export default function Nav({ activeSection, scrolled, scrollTo }) {
           </div>
 
           {/* Desktop nav links */}
-          <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: 4 }}>
+          <div className="nav-links" style={{ alignItems: "center", gap: 4 }}>
             {isResources ? (
               <button
                 onClick={() => navigate("/")}
