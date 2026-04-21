@@ -805,7 +805,7 @@ export default function Contact({ conRef, conVis }) {
                   </a>
                 </div>
 
-                {/* Loading shimmer */}
+                {/* Loading spinner */}
                 {!frameLoaded && (
                   <div
                     style={{
@@ -818,17 +818,19 @@ export default function Contact({ conRef, conVis }) {
                       zIndex: 1,
                     }}
                   >
-                    <span
+                    <style>{`
+                      @keyframes cal-spin { to { transform: rotate(360deg); } }
+                    `}</style>
+                    <div
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: 11,
-                        color: "var(--text-dim)",
-                        letterSpacing: 2,
-                        textTransform: "uppercase",
+                        width: 28,
+                        height: 28,
+                        borderRadius: "50%",
+                        border: "2.5px solid rgba(var(--accent-rgb),0.15)",
+                        borderTopColor: "var(--accent)",
+                        animation: "cal-spin 0.75s linear infinite",
                       }}
-                    >
-                      Loading calendar...
-                    </span>
+                    />
                   </div>
                 )}
 
