@@ -108,6 +108,16 @@ body {
    LAYOUT UTILITY CLASSES
    ═══════════════════════════════════ */
 
+/* Mobile Carousel arrow nudge */
+@keyframes carouselNudgeRight {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(16px); }
+}
+@keyframes carouselNudgeLeft {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-16px); }
+}
+
 /* Mobile Carousel */
 .mobile-carousel-wrapper { display: none; }
 .mobile-carousel-track {
@@ -117,13 +127,14 @@ body {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   gap: 16px;
-  padding: 4px 24px 8px;
+  padding: 4px 24px 4px;
 }
 .mobile-carousel-track::-webkit-scrollbar { display: none; }
 .mobile-carousel-slide {
   flex: 0 0 85vw;
   scroll-snap-align: start;
   max-width: 360px;
+  align-self: flex-start;
 }
 
 /* Desktop grid — hidden on mobile */
