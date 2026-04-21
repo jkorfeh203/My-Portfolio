@@ -108,6 +108,38 @@ body {
    LAYOUT UTILITY CLASSES
    ═══════════════════════════════════ */
 
+/* Mobile Carousel */
+.mobile-carousel-wrapper { display: none; }
+.mobile-carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 16px;
+  padding: 4px 24px 8px;
+}
+.mobile-carousel-track::-webkit-scrollbar { display: none; }
+.mobile-carousel-slide {
+  flex: 0 0 85vw;
+  scroll-snap-align: start;
+  max-width: 360px;
+}
+
+/* Desktop grid — hidden on mobile */
+.desktop-grid {
+  display: grid;
+}
+.desktop-showmore {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .mobile-carousel-wrapper { display: block; }
+  .desktop-grid { display: none !important; }
+  .desktop-showmore { display: none !important; }
+}
+
 /* Nav */
 .nav-links {
   display: flex;

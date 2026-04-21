@@ -11,21 +11,25 @@ import TrendCard from "../components/resources/TrendCard";
 import FilterBtn from "../components/resources/FilterBtn";
 import EmptyState from "../components/resources/EmptyState";
 import ShowMore from "../components/resources/ShowMore";
-import SectionHeader from "../components/resources/SectionHeader";
+import SectionTabs from "../components/resources/SectionTabs";
+import MobileCarousel from "../components/resources/MobileCarousel";
 import scholarships from "../data/scholarships.json";
 import trends from "../data/trends.json";
 
 /* global __DATA_LAST_UPDATED__ */
-
-// Injected at build time from git log of the two data files
 const LAST_UPDATED = __DATA_LAST_UPDATED__;
 
 export default function Resources() {
   const [scrolled, setScrolled] = useState(false);
+  const [activeTab, setActiveTab] = useState("scholarships");
+
+  // Scholarship state
   const [schFilter, setSchFilter] = useState("All");
   const [schDegree, setSchDegree] = useState("All");
   const [schSearch, setSchSearch] = useState("");
   const [schVisible, setSchVisible] = useState(6);
+
+  // Trend state
   const [trendFilter, setTrendFilter] = useState("all");
   const [trendVisible, setTrendVisible] = useState(6);
 
@@ -43,7 +47,7 @@ export default function Resources() {
   useEffect(() => { setSchVisible(6); }, [schFilter, schDegree, schSearch]);
   useEffect(() => { setTrendVisible(6); }, [trendFilter]);
 
-  // Scholarship filters — auto-generated from field values in JSON
+  // Scholarship filters
   const schFields = ["All", ...Array.from(new Set(scholarships.map(s => s.field))).filter(f => f !== "Any")];
   const schDegrees = ["All", "BS", "MS", "PhD"];
   const schQuery = schSearch.toLowerCase().trim();
@@ -52,7 +56,7 @@ export default function Resources() {
     .filter(s => schDegree === "All" || (s.degree && s.degree.includes(schDegree)))
     .filter(s => !schQuery || [s.name, s.organization, s.description, ...(s.tags || [])].join(" ").toLowerCase().includes(schQuery));
 
-  // Trend filters — auto-generated from category values in JSON
+  // Trend filters
   const trendCategories = [
     { value: "all", label: "All" },
     ...Array.from(new Set(trends.map(t => t.category))).map(c => ({
@@ -60,161 +64,133 @@ export default function Resources() {
       label: c === "ai" ? "AI & Engineering" : c.charAt(0).toUpperCase() + c.slice(1),
     })),
   ];
-  const filteredTrends = trendFilter === "all"
-    ? trends
-    : trends.filter(t => t.category === trendFilter);
+  const filteredTrends = trendFilter === "all" ? trends : trends.filter(t => t.category === trendFilter);
 
   return (
-    <div style={{
-      background: "var(--bg)",
-      color: "var(--text-primary)",
-      minHeight: "100vh",
-      fontFamily: "'DM Sans', sans-serif",
-    }}>
+    <div style={{ background: "var(--bg)", color: "var(--text-primary)", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
       <Cursor />
       <ScrollProgress />
       <Nav scrolled={scrolled} scrollTo={() => {}} activeSection="" />
 
       {/* ── PAGE HERO ── */}
-      <section style={{ paddingTop: 140, paddingBottom: 80, paddingLeft: 24, paddingRight: 24, textAlign: "center" }}>
+      <section style={{ paddingTop: 140, paddingBottom: 60, paddingLeft: 24, paddingRight: 24, textAlign: "center" }}>
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
-          <div style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: 10,
-            color: "var(--accent)",
-            letterSpacing: 4,
-            textTransform: "uppercase",
-            marginBottom: 16,
-          }}>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "var(--accent)", letterSpacing: 4, textTransform: "uppercase", marginBottom: 16 }}>
             Resources
           </div>
-          <h1 style={{
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: "clamp(32px, 6vw, 56px)",
-            fontWeight: 900,
-            color: "var(--text-primary)",
-            lineHeight: 1.1,
-            marginBottom: 20,
-          }}>
+          <h1 style={{ fontFamily: "'Outfit', sans-serif", fontSize: "clamp(32px, 6vw, 56px)", fontWeight: 900, color: "var(--text-primary)", lineHeight: 1.1, marginBottom: 20 }}>
             Scholarships &amp;<br />Research Trends
           </h1>
-          <p style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: 16,
-            color: "var(--text-secondary)",
-            lineHeight: 1.8,
-            marginBottom: 28,
-          }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: 28 }}>
             Curated opportunities and breakthroughs for students pursuing funded undergraduate
             and postgraduate programmes across engineering, STEM, and beyond.
           </p>
-          <span style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: 10,
-            color: "var(--text-dim)",
-            letterSpacing: 1.5,
-            background: "rgba(var(--accent-rgb),0.07)",
-            border: "1px solid rgba(var(--accent-rgb),0.15)",
-            padding: "5px 14px",
-            borderRadius: 50,
-          }}>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "var(--text-dim)", letterSpacing: 1.5, background: "rgba(var(--accent-rgb),0.07)", border: "1px solid rgba(var(--accent-rgb),0.15)", padding: "5px 14px", borderRadius: 50 }}>
             Last updated: {LAST_UPDATED}
           </span>
         </div>
       </section>
 
-      {/* ── SCHOLARSHIPS ── */}
-      <section style={{ padding: "60px 24px", background: "var(--bg-section)" }}>
+      {/* ── TABBED CONTENT ── */}
+      <section style={{ padding: "0 24px 80px", background: "var(--bg-section)" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHeader
-            eyebrow="Scholarships"
-            title="Funded Opportunities"
-            count={filteredSch.length}
-            total={scholarships.length}
-          />
-          <div style={{ position: "relative", maxWidth: 420, marginBottom: 20 }}>
-            <Search size={13} strokeWidth={2} style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", color: "var(--text-dim)", pointerEvents: "none" }} />
-            <input
-              type="text"
-              placeholder="Search scholarships..."
-              value={schSearch}
-              onChange={e => setSchSearch(e.target.value)}
-              style={{
-                width: "100%",
-                background: "rgba(var(--accent-rgb),0.04)",
-                border: "1px solid rgba(var(--accent-rgb),0.18)",
-                borderRadius: 50,
-                padding: "9px 40px 9px 36px",
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: 11,
-                color: "var(--text-primary)",
-                outline: "none",
-                boxSizing: "border-box",
-                transition: "border-color 0.2s ease",
-              }}
-              onFocus={e => e.target.style.borderColor = "rgba(var(--accent-rgb),0.5)"}
-              onBlur={e => e.target.style.borderColor = "rgba(var(--accent-rgb),0.18)"}
-            />
-            {schSearch && (
-              <button onClick={() => setSchSearch("")} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "var(--text-dim)", display: "flex", alignItems: "center", padding: 2 }}>
-                <X size={12} strokeWidth={2.5} />
-              </button>
-            )}
-          </div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 32 }}>
-            <Filter size={14} strokeWidth={2} style={{ color: "var(--text-dim)", alignSelf: "center", marginRight: 4 }} />
-            {schFields.map(f => (
-              <FilterBtn key={f} label={f} active={schFilter === f} onClick={() => setSchFilter(f)} />
-            ))}
-          </div>
-          {filteredSch.length === 0
-            ? (
-              <div>
-                <EmptyState message="No scholarships match your search or filters." />
-                <div style={{ textAlign: "center", marginTop: 12 }}>
-                  <button onClick={() => { setSchFilter("All"); setSchDegree("All"); setSchSearch(""); }} style={{ background: "none", border: "1px solid rgba(var(--accent-rgb),0.3)", borderRadius: 50, padding: "7px 20px", fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "var(--accent)", cursor: "pointer", letterSpacing: 1 }}>
-                    Clear all filters
-                  </button>
-                </div>
-              </div>
-            )
-            : (
-              <>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
-                  {filteredSch.slice(0, schVisible).map(s => <ScholarshipCard key={s.id} s={s} />)}
-                </div>
-                <ShowMore visible={schVisible} total={filteredSch.length} onMore={() => setSchVisible(v => v + 6)} onLess={() => setSchVisible(6)} label="scholarships" />
-              </>
-            )
-          }
-        </div>
-      </section>
 
-      {/* ── TRENDS ── */}
-      <section style={{ padding: "60px 24px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHeader eyebrow="Trends" title="What's Moving the Field" />
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 32 }}>
-            {trendCategories.map(tab => (
-              <FilterBtn
-                key={tab.value}
-                label={tab.label}
-                active={trendFilter === tab.value}
-                onClick={() => setTrendFilter(tab.value)}
-              />
-            ))}
-          </div>
-          {filteredTrends.length === 0
-            ? <EmptyState message="No trends match this filter." />
-            : (
-              <>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 20 }}>
-                  {filteredTrends.slice(0, trendVisible).map(t => <TrendCard key={t.id} t={t} />)}
+          <SectionTabs
+            active={activeTab}
+            onChange={setActiveTab}
+            schCount={filteredSch.length}
+            trendCount={filteredTrends.length}
+          />
+
+          {/* ── SCHOLARSHIPS ── */}
+          {activeTab === "scholarships" && (
+            <>
+              {/* Search */}
+              <div style={{ position: "relative", maxWidth: 420, marginBottom: 20 }}>
+                <Search size={13} strokeWidth={2} style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", color: "var(--text-dim)", pointerEvents: "none" }} />
+                <input
+                  type="text"
+                  placeholder="Search scholarships..."
+                  value={schSearch}
+                  onChange={e => setSchSearch(e.target.value)}
+                  style={{ width: "100%", background: "rgba(var(--accent-rgb),0.04)", border: "1px solid rgba(var(--accent-rgb),0.18)", borderRadius: 50, padding: "9px 40px 9px 36px", fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "var(--text-primary)", outline: "none", boxSizing: "border-box", transition: "border-color 0.2s ease" }}
+                  onFocus={e => e.target.style.borderColor = "rgba(var(--accent-rgb),0.5)"}
+                  onBlur={e => e.target.style.borderColor = "rgba(var(--accent-rgb),0.18)"}
+                />
+                {schSearch && (
+                  <button onClick={() => setSchSearch("")} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "var(--text-dim)", display: "flex", alignItems: "center", padding: 2 }}>
+                    <X size={12} strokeWidth={2.5} />
+                  </button>
+                )}
+              </div>
+
+              {/* Field filters */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 32 }}>
+                <Filter size={14} strokeWidth={2} style={{ color: "var(--text-dim)", alignSelf: "center", marginRight: 4 }} />
+                {schFields.map(f => (
+                  <FilterBtn key={f} label={f} active={schFilter === f} onClick={() => setSchFilter(f)} />
+                ))}
+              </div>
+
+              {filteredSch.length === 0 ? (
+                <div>
+                  <EmptyState message="No scholarships match your search or filters." />
+                  <div style={{ textAlign: "center", marginTop: 12 }}>
+                    <button onClick={() => { setSchFilter("All"); setSchDegree("All"); setSchSearch(""); }} style={{ background: "none", border: "1px solid rgba(var(--accent-rgb),0.3)", borderRadius: 50, padding: "7px 20px", fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "var(--accent)", cursor: "pointer", letterSpacing: 1 }}>
+                      Clear all filters
+                    </button>
+                  </div>
                 </div>
-                <ShowMore visible={trendVisible} total={filteredTrends.length} onMore={() => setTrendVisible(v => v + 6)} onLess={() => setTrendVisible(6)} label="trends" />
-              </>
-            )
-          }
+              ) : (
+                <>
+                  {/* Mobile: carousel (all filtered cards, no Show More) */}
+                  <MobileCarousel>
+                    {filteredSch.map(s => <ScholarshipCard key={s.id} s={s} />)}
+                  </MobileCarousel>
+
+                  {/* Desktop: grid + Show More */}
+                  <div className="desktop-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
+                    {filteredSch.slice(0, schVisible).map(s => <ScholarshipCard key={s.id} s={s} />)}
+                  </div>
+                  <div className="desktop-showmore">
+                    <ShowMore visible={schVisible} total={filteredSch.length} onMore={() => setSchVisible(v => v + 6)} onLess={() => setSchVisible(6)} label="scholarships" />
+                  </div>
+                </>
+              )}
+            </>
+          )}
+
+          {/* ── TRENDS ── */}
+          {activeTab === "trends" && (
+            <>
+              {/* Category filters */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 32 }}>
+                {trendCategories.map(tab => (
+                  <FilterBtn key={tab.value} label={tab.label} active={trendFilter === tab.value} onClick={() => setTrendFilter(tab.value)} />
+                ))}
+              </div>
+
+              {filteredTrends.length === 0 ? (
+                <EmptyState message="No trends match this filter." />
+              ) : (
+                <>
+                  {/* Mobile: carousel */}
+                  <MobileCarousel>
+                    {filteredTrends.map(t => <TrendCard key={t.id} t={t} />)}
+                  </MobileCarousel>
+
+                  {/* Desktop: grid + Show More */}
+                  <div className="desktop-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 20 }}>
+                    {filteredTrends.slice(0, trendVisible).map(t => <TrendCard key={t.id} t={t} />)}
+                  </div>
+                  <div className="desktop-showmore">
+                    <ShowMore visible={trendVisible} total={filteredTrends.length} onMore={() => setTrendVisible(v => v + 6)} onLess={() => setTrendVisible(6)} label="trends" />
+                  </div>
+                </>
+              )}
+            </>
+          )}
+
         </div>
       </section>
 
