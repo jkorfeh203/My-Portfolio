@@ -12,6 +12,7 @@ export default function SkillGauge({ label, level, delay, visible }) {
       : level > 60
         ? "linear-gradient(90deg, var(--accent-mid), var(--accent-xlight))"
         : "linear-gradient(90deg, var(--accent-soft), var(--accent))";
+  const tier = level > 80 ? "Expert" : level > 60 ? "Proficient" : "Working";
 
   return (
     <div
@@ -64,6 +65,19 @@ export default function SkillGauge({ label, level, delay, visible }) {
           }}
         />
       </div>
+      <span
+        style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: 10,
+          letterSpacing: 1.2,
+          textTransform: "uppercase",
+          color: dotColor,
+          minWidth: 78,
+          textAlign: "right",
+        }}
+      >
+        {tier}
+      </span>
     </div>
   );
 }

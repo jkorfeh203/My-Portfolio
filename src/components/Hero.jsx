@@ -400,8 +400,8 @@ export default function Hero({ heroVisible, scrollTo, onCvDownload }) {
                 marginBottom: 40,
               }}
             >
-              Designing sustainable energy technologies through engineering innovation,
-              computational modeling, and real-world mechanical systems.
+              Building geothermal-solar hybrid prototypes for off-grid African
+              communities — part experiment, part ANSYS simulation, part fieldwork.
             </p>
 
             {/* CTA Buttons */}
