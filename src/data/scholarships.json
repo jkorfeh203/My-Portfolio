@@ -6,10 +6,10 @@
     "field": "Engineering",
     "degree": ["MS", "PhD"],
     "amount": "€1,200 / month",
-    "deadline": "2026-10-15",
+    "deadline": "2026-10-31",
     "region": "Germany",
     "description": "Funded research stays in Germany for international students in engineering and natural sciences. Covers living costs, travel, and health insurance.",
-    "link": "https://www.daad.de/en/",
+    "link": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?detail=57742121",
     "tags": ["Fully Funded", "Research", "International"]
   },
   {
@@ -19,10 +19,10 @@
     "field": "Any",
     "degree": ["MS", "PhD"],
     "amount": "Full tuition + stipend",
-    "deadline": "2026-09-30",
+    "deadline": "Varies by country",
     "region": "United States",
     "description": "One of the most prestigious scholarships globally. Covers full tuition, living allowance, and health insurance for graduate study in the United States.",
-    "link": "https://foreign.fulbrightonline.org/",
+    "link": "https://foreign.fulbrightonline.org/apply",
     "tags": ["Fully Funded", "Prestigious", "USA"]
   },
   {
@@ -32,10 +32,10 @@
     "field": "Any",
     "degree": ["MS"],
     "amount": "Full tuition + £1,000/month",
-    "deadline": "2026-11-04",
+    "deadline": "2026-10-06",
     "region": "United Kingdom",
     "description": "UK government's global scholarship programme for future leaders. Covers tuition, living expenses, flights, and visa costs for a one-year master's degree.",
-    "link": "https://www.chevening.org/",
+    "link": "https://www.chevening.org/apply/",
     "tags": ["Fully Funded", "Leadership", "UK"]
   },
   {
@@ -48,7 +48,7 @@
     "deadline": "Rolling",
     "region": "Saudi Arabia",
     "description": "Generous fellowship for graduate students in energy, engineering, and applied sciences. Includes tuition, housing, health insurance, and a research budget.",
-    "link": "https://www.kaust.edu.sa/en/study-at-kaust/graduate-studies",
+    "link": "https://apply.kaust.edu.sa/apply/",
     "tags": ["Fully Funded", "Energy", "Research"]
   },
   {
@@ -56,12 +56,12 @@
     "name": "Mastercard Foundation Scholars Program",
     "organization": "Mastercard Foundation",
     "field": "STEM",
-    "degree": ["MS", "PhD"],
+    "degree": ["BS", "MS", "PhD"],
     "amount": "Full funding",
-    "deadline": "Varies",
+    "deadline": "Varies by institution",
     "region": "Various",
     "description": "Supports academically talented yet economically disadvantaged young Africans. Partners with top universities worldwide to provide full scholarships.",
-    "link": "https://mastercardfdn.org/all/scholars/",
+    "link": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply/",
     "tags": ["African Students", "Fully Funded", "STEM"]
   },
   {
@@ -71,10 +71,10 @@
     "field": "Energy",
     "degree": ["MS"],
     "amount": "€1,400 / month + travel",
-    "deadline": "2027-01-15",
+    "deadline": "Varies by program",
     "region": "Europe",
     "description": "Joint master's programme taught across multiple European universities in sustainable energy. Covers tuition, travel, installation costs, and monthly allowance.",
-    "link": "https://erasmus-plus.ec.europa.eu/",
+    "link": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/erasmus-mundus-joint-masters",
     "tags": ["Fully Funded", "Multi-Country", "Energy"]
   },
   {
@@ -84,10 +84,10 @@
     "field": "Engineering",
     "degree": ["MS", "PhD"],
     "amount": "Full tuition + living allowance",
-    "deadline": "2026-12-01",
+    "deadline": "2026-12-09",
     "region": "United Kingdom",
     "description": "For students from Commonwealth countries to study in the UK. Covers fees, living expenses, and airfare for those who could not otherwise afford to study abroad.",
-    "link": "https://cscuk.fcdo.gov.uk/",
+    "link": "https://cscuk.fcdo.gov.uk/apply/",
     "tags": ["Commonwealth", "Fully Funded", "UK"]
   },
   {
@@ -95,12 +95,12 @@
     "name": "Korea Government Scholarship (GKS)",
     "organization": "National Institute for International Education",
     "field": "Engineering",
-    "degree": ["MS", "PhD"],
+    "degree": ["BS", "MS", "PhD"],
     "amount": "Full tuition + ₩900,000/month",
-    "deadline": "2026-09-20",
+    "deadline": "2027-02-25",
     "region": "South Korea",
     "description": "Full scholarship for international students pursuing graduate degrees at top Korean universities. Includes Korean language training, round-trip airfare, and health insurance.",
-    "link": "https://www.studyinkorea.go.kr/",
+    "link": "https://www.studyinkorea.go.kr/in/plan/scholarship.do",
     "tags": ["Fully Funded", "Asia", "Engineering"]
   },
   {
@@ -110,10 +110,10 @@
     "field": "Engineering",
     "degree": ["MS"],
     "amount": "Full funding",
-    "deadline": "2026-08-31",
+    "deadline": "2026-09-16",
     "region": "Various",
     "description": "Targets African nationals pursuing postgraduate studies in development-related fields including engineering, energy, and infrastructure. Priority given to underrepresented countries.",
-    "link": "https://www.afdb.org/en",
+    "link": "https://www.afdb.org/en/about-us/careers/japan-africa-dream-scholarship-jads-program/application-procedures",
     "tags": ["African Students", "Development", "Fully Funded"]
   },
   {
@@ -123,23 +123,23 @@
     "field": "Energy",
     "degree": ["MS", "PhD"],
     "amount": "Up to $25,000 / year",
-    "deadline": "2026-07-31",
+    "deadline": "Check website",
     "region": "Various",
-    "description": "Supports students from developing countries pursuing graduate education in energy, sustainable development, and related engineering fields.",
-    "link": "https://opecfund.org/",
+    "description": "Supports students from developing countries pursuing graduate education in energy, sustainable development, and related engineering fields. Applications currently paused — check the official site for updates.",
+    "link": "https://opecfund.org/what-we-offer/special-initiatives/scholarship",
     "tags": ["Energy", "Developing Countries", "Funded"]
   },
   {
-  "id": 11,
-  "name": "ETH Zurich Excellence Scholarship (ESOP)",
-  "organization": "ETH Zurich Foundation",
-  "field": "Computer Science",
-  "degree": ["MS"],
-  "amount": "CHF 12,000 / semester + full tuition waiver",
-  "deadline": "2026-11-30",
-  "region": "Switzerland",
-  "description": "Merit-based scholarship for outstanding international students pursuing a Master's at ETH Zurich. Covers full tuition and CHF 12,000 per semester for living and study costs, plus access to the ETH Foundation mentorship network.",
-  "link": "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html",
-  "tags": ["Fully Funded", "Merit-Based", "Prestigious"]
+    "id": 11,
+    "name": "ETH Zurich Excellence Scholarship (ESOP)",
+    "organization": "ETH Zurich Foundation",
+    "field": "Computer Science",
+    "degree": ["MS"],
+    "amount": "CHF 12,000 / semester + full tuition waiver",
+    "deadline": "2026-11-30",
+    "region": "Switzerland",
+    "description": "Merit-based scholarship for outstanding international students pursuing a Master's at ETH Zurich. Covers full tuition and CHF 12,000 per semester for living and study costs, plus access to the ETH Foundation mentorship network.",
+    "link": "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html",
+    "tags": ["Fully Funded", "Merit-Based", "Prestigious"]
   }
 ]

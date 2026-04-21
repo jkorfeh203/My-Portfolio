@@ -152,7 +152,7 @@ export default function Nav({ activeSection, scrolled, scrollTo }) {
             )}
           </div>
 
-          {/* Hamburger — mobile only, hidden on resources page */}
+          {/* Hamburger — mobile only, not needed on resources page */}
           {!isResources && (
             <button
               className="nav-hamburger"
@@ -160,6 +160,17 @@ export default function Nav({ activeSection, scrolled, scrollTo }) {
               aria-label="Open menu"
             >
               <Menu size={24} strokeWidth={2} />
+            </button>
+          )}
+          {isResources && (
+            <button
+              className="nav-hamburger"
+              onClick={() => navigate("/")}
+              aria-label="Back to portfolio"
+              style={{ alignItems: "center", gap: 6, background: "none", border: "1px solid rgba(var(--accent-rgb),0.25)", borderRadius: 50, padding: "6px 14px", fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase", color: "var(--accent)", cursor: "pointer" }}
+            >
+              <ArrowLeft size={12} strokeWidth={2} />
+              Portfolio
             </button>
           )}
         </div>

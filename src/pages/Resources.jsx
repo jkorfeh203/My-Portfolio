@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Filter } from "lucide-react";
+import { Filter, Search, X } from "lucide-react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import ThemePalette from "../components/ThemePalette";
@@ -10,6 +10,7 @@ import ScholarshipCard from "../components/resources/ScholarshipCard";
 import TrendCard from "../components/resources/TrendCard";
 import FilterBtn from "../components/resources/FilterBtn";
 import EmptyState from "../components/resources/EmptyState";
+import ShowMore from "../components/resources/ShowMore";
 import SectionHeader from "../components/resources/SectionHeader";
 import scholarships from "../data/scholarships.json";
 import trends from "../data/trends.json";
@@ -22,7 +23,11 @@ const LAST_UPDATED = __DATA_LAST_UPDATED__;
 export default function Resources() {
   const [scrolled, setScrolled] = useState(false);
   const [schFilter, setSchFilter] = useState("All");
+  const [schDegree, setSchDegree] = useState("All");
+  const [schSearch, setSchSearch] = useState("");
+  const [schVisible, setSchVisible] = useState(6);
   const [trendFilter, setTrendFilter] = useState("all");
+  const [trendVisible, setTrendVisible] = useState(6);
 
   useEffect(() => {
     document.title = "Resources | John T. Korfeh";
@@ -35,11 +40,17 @@ export default function Resources() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => { setSchVisible(6); }, [schFilter, schDegree, schSearch]);
+  useEffect(() => { setTrendVisible(6); }, [trendFilter]);
+
   // Scholarship filters — auto-generated from field values in JSON
   const schFields = ["All", ...Array.from(new Set(scholarships.map(s => s.field))).filter(f => f !== "Any")];
-  const filteredSch = schFilter === "All"
-    ? scholarships
-    : scholarships.filter(s => s.field === schFilter || s.field === "Any");
+  const schDegrees = ["All", "BS", "MS", "PhD"];
+  const schQuery = schSearch.toLowerCase().trim();
+  const filteredSch = scholarships
+    .filter(s => schFilter === "All" || s.field === schFilter || s.field === "Any")
+    .filter(s => schDegree === "All" || (s.degree && s.degree.includes(schDegree)))
+    .filter(s => !schQuery || [s.name, s.organization, s.description, ...(s.tags || [])].join(" ").toLowerCase().includes(schQuery));
 
   // Trend filters — auto-generated from category values in JSON
   const trendCategories = [
@@ -94,8 +105,8 @@ export default function Resources() {
             lineHeight: 1.8,
             marginBottom: 28,
           }}>
-            Curated opportunities and breakthroughs for engineers pursuing funded MS/PhD programmes
-            in energy systems, mechanical engineering, and AI-driven simulation.
+            Curated opportunities and breakthroughs for students pursuing funded undergraduate
+            and postgraduate programmes across engineering, STEM, and beyond.
           </p>
           <span style={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -121,6 +132,35 @@ export default function Resources() {
             count={filteredSch.length}
             total={scholarships.length}
           />
+          <div style={{ position: "relative", maxWidth: 420, marginBottom: 20 }}>
+            <Search size={13} strokeWidth={2} style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", color: "var(--text-dim)", pointerEvents: "none" }} />
+            <input
+              type="text"
+              placeholder="Search scholarships..."
+              value={schSearch}
+              onChange={e => setSchSearch(e.target.value)}
+              style={{
+                width: "100%",
+                background: "rgba(var(--accent-rgb),0.04)",
+                border: "1px solid rgba(var(--accent-rgb),0.18)",
+                borderRadius: 50,
+                padding: "9px 40px 9px 36px",
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 11,
+                color: "var(--text-primary)",
+                outline: "none",
+                boxSizing: "border-box",
+                transition: "border-color 0.2s ease",
+              }}
+              onFocus={e => e.target.style.borderColor = "rgba(var(--accent-rgb),0.5)"}
+              onBlur={e => e.target.style.borderColor = "rgba(var(--accent-rgb),0.18)"}
+            />
+            {schSearch && (
+              <button onClick={() => setSchSearch("")} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "var(--text-dim)", display: "flex", alignItems: "center", padding: 2 }}>
+                <X size={12} strokeWidth={2.5} />
+              </button>
+            )}
+          </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 32 }}>
             <Filter size={14} strokeWidth={2} style={{ color: "var(--text-dim)", alignSelf: "center", marginRight: 4 }} />
             {schFields.map(f => (
@@ -128,11 +168,23 @@ export default function Resources() {
             ))}
           </div>
           {filteredSch.length === 0
-            ? <EmptyState message="No scholarships match this filter." />
-            : (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
-                {filteredSch.map(s => <ScholarshipCard key={s.id} s={s} />)}
+            ? (
+              <div>
+                <EmptyState message="No scholarships match your search or filters." />
+                <div style={{ textAlign: "center", marginTop: 12 }}>
+                  <button onClick={() => { setSchFilter("All"); setSchDegree("All"); setSchSearch(""); }} style={{ background: "none", border: "1px solid rgba(var(--accent-rgb),0.3)", borderRadius: 50, padding: "7px 20px", fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "var(--accent)", cursor: "pointer", letterSpacing: 1 }}>
+                    Clear all filters
+                  </button>
+                </div>
               </div>
+            )
+            : (
+              <>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
+                  {filteredSch.slice(0, schVisible).map(s => <ScholarshipCard key={s.id} s={s} />)}
+                </div>
+                <ShowMore visible={schVisible} total={filteredSch.length} onMore={() => setSchVisible(v => v + 6)} onLess={() => setSchVisible(6)} label="scholarships" />
+              </>
             )
           }
         </div>
@@ -155,9 +207,12 @@ export default function Resources() {
           {filteredTrends.length === 0
             ? <EmptyState message="No trends match this filter." />
             : (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 20 }}>
-                {filteredTrends.map(t => <TrendCard key={t.id} t={t} />)}
-              </div>
+              <>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 20 }}>
+                  {filteredTrends.slice(0, trendVisible).map(t => <TrendCard key={t.id} t={t} />)}
+                </div>
+                <ShowMore visible={trendVisible} total={filteredTrends.length} onMore={() => setTrendVisible(v => v + 6)} onLess={() => setTrendVisible(6)} label="trends" />
+              </>
             )
           }
         </div>
