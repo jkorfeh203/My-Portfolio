@@ -20,7 +20,7 @@ import BackToTop from "./components/BackToTop";
 import ThemePalette from "./components/ThemePalette";
 import Toast from "./components/Toast";
 
-function PortfolioInner() {
+export default function Portfolio() {
   const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
@@ -40,15 +40,21 @@ function PortfolioInner() {
   useEffect(() => {
     if (loading) return;
     const t = setTimeout(() => setHeroVisible(true), 200);
+    let ticking = false;
     const onScroll = () => {
-      setScrolled(window.scrollY > 60);
-      const sections = SECTIONS.map((id) => document.getElementById(id));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        if (sections[i] && sections[i].getBoundingClientRect().top < 300) {
-          setActiveSection(SECTIONS[i]);
-          break;
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 60);
+        const sections = SECTIONS.map((id) => document.getElementById(id));
+        for (let i = sections.length - 1; i >= 0; i--) {
+          if (sections[i] && sections[i].getBoundingClientRect().top < 300) {
+            setActiveSection(SECTIONS[i]);
+            break;
+          }
         }
-      }
+        ticking = false;
+      });
     };
     window.addEventListener("scroll", onScroll);
     return () => {
@@ -98,8 +104,4 @@ function PortfolioInner() {
       {cvModalOpen && <CVRequestModal onClose={() => setCvModalOpen(false)} />}
     </div>
   );
-}
-
-export default function Portfolio() {
-  return <PortfolioInner />;
 }

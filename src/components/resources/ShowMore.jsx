@@ -15,10 +15,10 @@ const btnStyle = {
 const onEnter = e => { e.currentTarget.style.background = "rgba(var(--accent-rgb),0.08)"; e.currentTarget.style.borderColor = "rgba(var(--accent-rgb),0.6)"; };
 const onLeave = e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(var(--accent-rgb),0.3)"; };
 
-export default function ShowMore({ visible, total, onMore, onLess, label = "results" }) {
+export default function ShowMore({ visible, total, onMore, onLess, label = "results", pageSize = 6 }) {
   if (total === 0) return null;
   const hasMore = visible < total;
-  const hasExpanded = visible > 6;
+  const hasExpanded = visible > pageSize;
   return (
     <div style={{ textAlign: "center", marginTop: 32 }}>
       <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "var(--text-dim)", letterSpacing: 1, marginBottom: 14 }}>

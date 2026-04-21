@@ -70,6 +70,8 @@ export default function ThemePalette() {
               height: 28,
               borderRadius: "50%",
               background: t.swatch,
+              backgroundOrigin: "border-box",
+              backgroundClip: "border-box",
               border: theme.id === t.id
                 ? `2.5px solid var(--text-primary)`
                 : "2.5px solid transparent",

@@ -9,6 +9,9 @@ export default function SectionTabs({ active, onChange, schCount, trendCount }) 
       display: "flex",
       borderBottom: "1px solid rgba(var(--accent-rgb),0.12)",
       marginBottom: 40,
+      overflowX: "auto",
+      scrollbarWidth: "none",
+      msOverflowStyle: "none",
     }}>
       {tabs.map(tab => {
         const isActive = active === tab.id;

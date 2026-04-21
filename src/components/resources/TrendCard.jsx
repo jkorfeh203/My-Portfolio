@@ -19,8 +19,8 @@ export default function TrendCard({ t }) {
           fontSize: 9,
           letterSpacing: 1.5,
           textTransform: "uppercase",
-          color: isAI ? "#818cf8" : "var(--accent)",
-          background: isAI ? "rgba(129,140,248,0.1)" : "rgba(var(--accent-rgb),0.1)",
+          color: "var(--accent)",
+          background: "rgba(var(--accent-rgb),0.1)",
           padding: "3px 10px",
           borderRadius: 50,
         }}>
@@ -64,7 +64,7 @@ export default function TrendCard({ t }) {
 
       {/* Tags */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-        {t.tags.map(tag => (
+        {(t.tags || []).map(tag => (
           <span key={tag} style={tagStyle("tag")}>{tag}</span>
         ))}
       </div>

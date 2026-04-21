@@ -111,11 +111,11 @@ body {
 /* Mobile Carousel arrow nudge */
 @keyframes carouselNudgeRight {
   0%, 100% { transform: translateX(0); }
-  50%      { transform: translateX(16px); }
+  50%      { transform: translateX(10px); }
 }
 @keyframes carouselNudgeLeft {
   0%, 100% { transform: translateX(0); }
-  50%      { transform: translateX(-16px); }
+  50%      { transform: translateX(-10px); }
 }
 
 /* Mobile Carousel */

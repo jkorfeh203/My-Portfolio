@@ -42,14 +42,6 @@ export default function MobileCarousel({ children }) {
   const arrowStyle = {
     position: "absolute",
     top: "35%",
-    background: "rgba(var(--accent-rgb),0.12)",
-    border: "1px solid rgba(var(--accent-rgb),0.25)",
-    borderRadius: "50%",
-    width: 32,
-    height: 32,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
     color: "var(--accent)",
     pointerEvents: "none",
     animation: hasSwiped
@@ -63,11 +55,11 @@ export default function MobileCarousel({ children }) {
 
       {/* Track wrapper — arrow is relative to this div, not the full carousel */}
       <div style={{ position: "relative" }}>
-        {showArrow && (
-          <div style={{ ...arrowStyle, [isLast ? "left" : "right"]: -12 }}>
+        {showArrow && (currentIndex === 0 || isLast) && (
+          <div style={{ ...arrowStyle, [isLast ? "left" : "right"]: -4 }}>
             {isLast
-              ? <ChevronLeft size={16} strokeWidth={2.5} />
-              : <ChevronRight size={16} strokeWidth={2.5} />
+              ? <ChevronLeft size={22} strokeWidth={2.75} />
+              : <ChevronRight size={22} strokeWidth={2.75} />
             }
           </div>
         )}

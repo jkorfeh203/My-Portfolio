@@ -17,6 +17,7 @@ import trends from "../data/trends.json";
 
 /* global __DATA_LAST_UPDATED__ */
 const LAST_UPDATED = __DATA_LAST_UPDATED__;
+const PAGE_SIZE = 6;
 
 export default function Resources() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,11 +27,11 @@ export default function Resources() {
   const [schFilter, setSchFilter] = useState("All");
   const [schDegree, setSchDegree] = useState("All");
   const [schSearch, setSchSearch] = useState("");
-  const [schVisible, setSchVisible] = useState(6);
+  const [schVisible, setSchVisible] = useState(PAGE_SIZE);
 
   // Trend state
   const [trendFilter, setTrendFilter] = useState("all");
-  const [trendVisible, setTrendVisible] = useState(6);
+  const [trendVisible, setTrendVisible] = useState(PAGE_SIZE);
 
   useEffect(() => {
     document.title = "Resources | John T. Korfeh";
@@ -43,8 +44,8 @@ export default function Resources() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setSchVisible(6); }, [schFilter, schDegree, schSearch]);
-  useEffect(() => { setTrendVisible(6); }, [trendFilter]);
+  useEffect(() => { setSchVisible(PAGE_SIZE); }, [schFilter, schDegree, schSearch]);
+  useEffect(() => { setTrendVisible(PAGE_SIZE); }, [trendFilter]);
 
   // Scholarship filters
   const schFields = ["All", ...Array.from(new Set(scholarships.map(s => s.field))).filter(f => f !== "Any")];
@@ -151,7 +152,7 @@ export default function Resources() {
                     {filteredSch.slice(0, schVisible).map(s => <ScholarshipCard key={s.id} s={s} />)}
                   </div>
                   <div className="desktop-showmore">
-                    <ShowMore visible={schVisible} total={filteredSch.length} onMore={() => setSchVisible(v => v + 6)} onLess={() => setSchVisible(6)} label="scholarships" />
+                    <ShowMore visible={schVisible} total={filteredSch.length} pageSize={PAGE_SIZE} onMore={() => setSchVisible(v => v + PAGE_SIZE)} onLess={() => setSchVisible(PAGE_SIZE)} label="scholarships" />
                   </div>
                 </>
               )}
@@ -182,7 +183,7 @@ export default function Resources() {
                     {filteredTrends.slice(0, trendVisible).map(t => <TrendCard key={t.id} t={t} />)}
                   </div>
                   <div className="desktop-showmore">
-                    <ShowMore visible={trendVisible} total={filteredTrends.length} onMore={() => setTrendVisible(v => v + 6)} onLess={() => setTrendVisible(6)} label="trends" />
+                    <ShowMore visible={trendVisible} total={filteredTrends.length} pageSize={PAGE_SIZE} onMore={() => setTrendVisible(v => v + PAGE_SIZE)} onLess={() => setTrendVisible(PAGE_SIZE)} label="trends" />
                   </div>
                 </>
               )}
