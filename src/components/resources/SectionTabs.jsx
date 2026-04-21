@@ -1,7 +1,8 @@
-export default function SectionTabs({ active, onChange, schCount, trendCount }) {
+export default function SectionTabs({ active, onChange, schCount, trendCount, savedCount }) {
   const tabs = [
     { id: "scholarships", label: "Scholarships", count: schCount },
-    { id: "trends", label: "Trends", count: trendCount },
+    { id: "trends",       label: "Trends",       count: trendCount },
+    { id: "saved",        label: "Saved",         count: savedCount ?? 0 },
   ];
 
   return (

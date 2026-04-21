@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Filter, Search, X } from "lucide-react";
+import { Filter, Search, X, Mail } from "lucide-react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import ThemePalette from "../components/ThemePalette";
@@ -12,12 +12,20 @@ import EmptyState from "../components/resources/EmptyState";
 import ShowMore from "../components/resources/ShowMore";
 import SectionTabs from "../components/resources/SectionTabs";
 import MobileCarousel from "../components/resources/MobileCarousel";
+import { useBookmarks } from "../hooks/useBookmarks";
 import scholarships from "../data/scholarships.json";
 import trends from "../data/trends.json";
 
 /* global __DATA_LAST_UPDATED__ */
 const LAST_UPDATED = __DATA_LAST_UPDATED__;
 const PAGE_SIZE = 6;
+
+function deadlineSortKey(deadline) {
+  const d = new Date(deadline);
+  if (isNaN(d.getTime())) return 2e15;           // non-date strings → last
+  if (d < new Date()) return 1e15 + d.getTime(); // closed → second to last
+  return d.getTime();                             // future → soonest first
+}
 
 export default function Resources() {
   const [scrolled, setScrolled] = useState(false);
@@ -33,6 +41,9 @@ export default function Resources() {
   const [trendFilter, setTrendFilter] = useState("all");
   const [trendVisible, setTrendVisible] = useState(PAGE_SIZE);
 
+  // Bookmarks
+  const [bookmarks, toggleBookmark, isBookmarked] = useBookmarks(scholarships);
+
   useEffect(() => {
     document.title = "Resources | John T. Korfeh";
     return () => { document.title = "John T. Korfeh"; };
@@ -47,14 +58,21 @@ export default function Resources() {
   useEffect(() => { setSchVisible(PAGE_SIZE); }, [schFilter, schDegree, schSearch]);
   useEffect(() => { setTrendVisible(PAGE_SIZE); }, [trendFilter]);
 
-  // Scholarship filters
+  // Scholarship filters + sort by deadline
   const schFields = ["All", ...Array.from(new Set(scholarships.map(s => s.field))).filter(f => f !== "Any")];
   const schDegrees = ["All", "BS", "MS", "PhD"];
   const schQuery = schSearch.toLowerCase().trim();
   const filteredSch = scholarships
     .filter(s => schFilter === "All" || s.field === schFilter || s.field === "Any")
     .filter(s => schDegree === "All" || (s.degree && s.degree.includes(schDegree)))
-    .filter(s => !schQuery || [s.name, s.organization, s.description, ...(s.tags || [])].join(" ").toLowerCase().includes(schQuery));
+    .filter(s => !schQuery || [s.name, s.organization, s.description, ...(s.tags || [])].join(" ").toLowerCase().includes(schQuery))
+    .slice()
+    .sort((a, b) => deadlineSortKey(a.deadline) - deadlineSortKey(b.deadline));
+
+  // Saved scholarships (preserves sort order)
+  const savedSch = filteredSch.filter(s => isBookmarked(s.id));
+  // All bookmarked (for count badge — not filtered)
+  const allSavedCount = scholarships.filter(s => isBookmarked(s.id)).length;
 
   // Trend filters
   const trendCategories = [
@@ -65,6 +83,12 @@ export default function Resources() {
     })),
   ];
   const filteredTrends = trendFilter === "all" ? trends : trends.filter(t => t.category === trendFilter);
+
+  const suggestHref = [
+    "mailto:johnkorfeh2017@gmail.com",
+    "?subject=Scholarship%20Suggestion%20for%20John's%20Resources%20Page",
+    "&body=Hi%20John%2C%0A%0AScholarship%20name%3A%20%0AOrganization%3A%20%0ADeadline%3A%20%0ALink%3A%20%0A%0AThanks!",
+  ].join("");
 
   return (
     <div style={{ background: "var(--bg)", color: "var(--text-primary)", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
@@ -99,6 +123,7 @@ export default function Resources() {
             onChange={setActiveTab}
             schCount={filteredSch.length}
             trendCount={filteredTrends.length}
+            savedCount={allSavedCount}
           />
 
           {/* ── SCHOLARSHIPS ── */}
@@ -144,15 +169,74 @@ export default function Resources() {
                 <>
                   {/* Mobile: carousel (all filtered cards, no Show More) */}
                   <MobileCarousel>
-                    {filteredSch.map(s => <ScholarshipCard key={s.id} s={s} />)}
+                    {filteredSch.map(s => (
+                      <ScholarshipCard key={s.id} s={s} isBookmarked={isBookmarked(s.id)} onToggle={toggleBookmark} />
+                    ))}
                   </MobileCarousel>
 
                   {/* Desktop: grid + Show More */}
                   <div className="desktop-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
-                    {filteredSch.slice(0, schVisible).map(s => <ScholarshipCard key={s.id} s={s} />)}
+                    {filteredSch.slice(0, schVisible).map(s => (
+                      <ScholarshipCard key={s.id} s={s} isBookmarked={isBookmarked(s.id)} onToggle={toggleBookmark} />
+                    ))}
                   </div>
                   <div className="desktop-showmore">
                     <ShowMore visible={schVisible} total={filteredSch.length} pageSize={PAGE_SIZE} onMore={() => setSchVisible(v => v + PAGE_SIZE)} onLess={() => setSchVisible(PAGE_SIZE)} label="scholarships" />
+                  </div>
+                </>
+              )}
+
+              {/* Suggest a scholarship */}
+              <div style={{ textAlign: "center", marginTop: 48, paddingTop: 32, borderTop: "1px solid rgba(var(--accent-rgb),0.08)" }}>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "var(--text-dim)", marginBottom: 12 }}>
+                  Know a scholarship that should be here?
+                </p>
+                <a
+                  href={suggestHref}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 7,
+                    background: "none",
+                    border: "1px solid rgba(var(--accent-rgb),0.3)",
+                    borderRadius: 50,
+                    padding: "9px 22px",
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 10,
+                    color: "var(--accent)",
+                    textDecoration: "none",
+                    letterSpacing: 1,
+                    transition: "border-color 0.2s ease, background 0.2s ease",
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.background = "rgba(var(--accent-rgb),0.06)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(var(--accent-rgb),0.3)"; e.currentTarget.style.background = "none"; }}
+                >
+                  <Mail size={12} strokeWidth={2} />
+                  Suggest a scholarship
+                </a>
+              </div>
+            </>
+          )}
+
+          {/* ── SAVED ── */}
+          {activeTab === "saved" && (
+            <>
+              {allSavedCount === 0 ? (
+                <EmptyState message="No saved scholarships yet. Hit the bookmark icon on any card to save it here." />
+              ) : (
+                <>
+                  {/* Mobile: carousel */}
+                  <MobileCarousel>
+                    {scholarships.filter(s => isBookmarked(s.id)).map(s => (
+                      <ScholarshipCard key={s.id} s={s} isBookmarked={true} onToggle={toggleBookmark} />
+                    ))}
+                  </MobileCarousel>
+
+                  {/* Desktop: grid */}
+                  <div className="desktop-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
+                    {scholarships.filter(s => isBookmarked(s.id)).map(s => (
+                      <ScholarshipCard key={s.id} s={s} isBookmarked={true} onToggle={toggleBookmark} />
+                    ))}
                   </div>
                 </>
               )}

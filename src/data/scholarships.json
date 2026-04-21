@@ -10,7 +10,8 @@
     "region": "Germany",
     "description": "Funded research stays in Germany for international students in engineering and natural sciences. Covers living costs, travel, and health insurance.",
     "link": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?detail=57742121",
-    "tags": ["Fully Funded", "Research", "International"]
+    "tags": ["Fully Funded", "Research", "International"],
+    "lastVerified": "2026-04-21"
   },
   {
     "id": 2,
@@ -23,7 +24,8 @@
     "region": "United States",
     "description": "One of the most prestigious scholarships globally. Covers full tuition, living allowance, and health insurance for graduate study in the United States.",
     "link": "https://foreign.fulbrightonline.org/apply",
-    "tags": ["Fully Funded", "Prestigious", "USA"]
+    "tags": ["Fully Funded", "Prestigious", "USA"],
+    "lastVerified": "2026-04-21"
   },
   {
     "id": 3,
@@ -36,7 +38,8 @@
     "region": "United Kingdom",
     "description": "UK government's global scholarship programme for future leaders. Covers tuition, living expenses, flights, and visa costs for a one-year master's degree.",
     "link": "https://www.chevening.org/apply/",
-    "tags": ["Fully Funded", "Leadership", "UK"]
+    "tags": ["Fully Funded", "Leadership", "UK"],
+    "lastVerified": "2026-04-21"
   },
   {
     "id": 4,
@@ -49,7 +52,8 @@
     "region": "Saudi Arabia",
     "description": "Generous fellowship for graduate students in energy, engineering, and applied sciences. Includes tuition, housing, health insurance, and a research budget.",
     "link": "https://apply.kaust.edu.sa/apply/",
-    "tags": ["Fully Funded", "Energy", "Research"]
+    "tags": ["Fully Funded", "Energy", "Research"],
+    "lastVerified": "2026-04-21"
   },
   {
     "id": 5,
@@ -62,7 +66,8 @@
     "region": "Various",
     "description": "Supports academically talented yet economically disadvantaged young Africans. Partners with top universities worldwide to provide full scholarships.",
     "link": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply/",
-    "tags": ["African Students", "Fully Funded", "STEM"]
+    "tags": ["African Students", "Fully Funded", "STEM"],
+    "lastVerified": "2026-04-21"
   },
   {
     "id": 6,
@@ -75,7 +80,8 @@
     "region": "Europe",
     "description": "Joint master's programme taught across multiple European universities in sustainable energy. Covers tuition, travel, installation costs, and monthly allowance.",
     "link": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/erasmus-mundus-joint-masters",
-    "tags": ["Fully Funded", "Multi-Country", "Energy"]
+    "tags": ["Fully Funded", "Multi-Country", "Energy"],
+    "lastVerified": "2026-04-21"
   },
   {
     "id": 7,
@@ -88,7 +94,8 @@
     "region": "United Kingdom",
     "description": "For students from Commonwealth countries to study in the UK. Covers fees, living expenses, and airfare for those who could not otherwise afford to study abroad.",
     "link": "https://cscuk.fcdo.gov.uk/apply/",
-    "tags": ["Commonwealth", "Fully Funded", "UK"]
+    "tags": ["Commonwealth", "Fully Funded", "UK"],
+    "lastVerified": "2026-04-21"
   },
   {
     "id": 8,
@@ -101,7 +108,8 @@
     "region": "South Korea",
     "description": "Full scholarship for international students pursuing graduate degrees at top Korean universities. Includes Korean language training, round-trip airfare, and health insurance.",
     "link": "https://www.studyinkorea.go.kr/in/plan/scholarship.do",
-    "tags": ["Fully Funded", "Asia", "Engineering"]
+    "tags": ["Fully Funded", "Asia", "Engineering"],
+    "lastVerified": "2026-04-21"
   },
   {
     "id": 9,
@@ -114,7 +122,8 @@
     "region": "Various",
     "description": "Targets African nationals pursuing postgraduate studies in development-related fields including engineering, energy, and infrastructure. Priority given to underrepresented countries.",
     "link": "https://www.afdb.org/en/about-us/careers/japan-africa-dream-scholarship-jads-program/application-procedures",
-    "tags": ["African Students", "Development", "Fully Funded"]
+    "tags": ["African Students", "Development", "Fully Funded"],
+    "lastVerified": "2026-04-21"
   },
   {
     "id": 10,
@@ -127,7 +136,8 @@
     "region": "Various",
     "description": "Supports students from developing countries pursuing graduate education in energy, sustainable development, and related engineering fields. Applications currently paused — check the official site for updates.",
     "link": "https://opecfund.org/what-we-offer/special-initiatives/scholarship",
-    "tags": ["Energy", "Developing Countries", "Funded"]
+    "tags": ["Energy", "Developing Countries", "Funded"],
+    "lastVerified": "2026-04-21"
   },
   {
     "id": 11,
@@ -140,6 +150,7 @@
     "region": "Switzerland",
     "description": "Merit-based scholarship for outstanding international students pursuing a Master's at ETH Zurich. Covers full tuition and CHF 12,000 per semester for living and study costs, plus access to the ETH Foundation mentorship network.",
     "link": "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html",
-    "tags": ["Fully Funded", "Merit-Based", "Prestigious"]
+    "tags": ["Fully Funded", "Merit-Based", "Prestigious"],
+    "lastVerified": "2026-04-21"
   }
 ]
