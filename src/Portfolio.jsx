@@ -18,7 +18,6 @@ import ScrollProgress from "./components/ScrollProgress";
 import FloatingCTA from "./components/FloatingCTA";
 import BackToTop from "./components/BackToTop";
 import ThemePalette from "./components/ThemePalette";
-import Cursor from "./components/Cursor";
 import Toast from "./components/Toast";
 
 function PortfolioInner() {
@@ -80,7 +79,6 @@ function PortfolioInner() {
       }}
     >
       {loading && <Preloader onComplete={() => setLoading(false)} />}
-      <Cursor />
       <ScrollProgress />
       <Nav activeSection={activeSection} scrolled={scrolled} scrollTo={scrollTo} />
       <Hero heroVisible={heroVisible} scrollTo={scrollTo} onCvDownload={() => setCvModalOpen(true)} />

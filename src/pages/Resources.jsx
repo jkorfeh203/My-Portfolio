@@ -4,7 +4,6 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import ThemePalette from "../components/ThemePalette";
 import BackToTop from "../components/BackToTop";
-import Cursor from "../components/Cursor";
 import ScrollProgress from "../components/ScrollProgress";
 import ScholarshipCard from "../components/resources/ScholarshipCard";
 import TrendCard from "../components/resources/TrendCard";
@@ -68,7 +67,6 @@ export default function Resources() {
 
   return (
     <div style={{ background: "var(--bg)", color: "var(--text-primary)", minHeight: "100vh", fontFamily: "'DM Sans', sans-serif" }}>
-      <Cursor />
       <ScrollProgress />
       <Nav scrolled={scrolled} scrollTo={() => {}} activeSection="" />
 
