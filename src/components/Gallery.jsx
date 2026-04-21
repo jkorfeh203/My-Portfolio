@@ -67,7 +67,7 @@ export default function Gallery({ galRef, galVis }) {
         >
           {filtered.map((item, i) => (
             <div
-              key={i}
+              key={item.label}
               onClick={() => item.src && setLightbox(item)}
               style={{
                 borderRadius: 10,

@@ -12,6 +12,13 @@ export default function MobileCarousel({ children }) {
   const currentIndex = Math.min(Math.round(progress * (total - 1)), total - 1);
   const isLast = currentIndex === total - 1;
 
+  // Reset scroll + swipe state when content changes
+  useEffect(() => {
+    if (scrollRef.current) scrollRef.current.scrollLeft = 0;
+    setProgress(0);
+    setHasSwiped(false);
+  }, [total]);
+
   useEffect(() => {
     const track = scrollRef.current;
     if (!track || total <= 1) return;

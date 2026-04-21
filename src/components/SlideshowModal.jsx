@@ -28,7 +28,7 @@ export default function SlideshowModal({ item, onClose }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [index, fading]);
+  }, [index, fading, onClose]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div

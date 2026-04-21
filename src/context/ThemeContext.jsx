@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { THEMES, DEFAULT_THEME } from "../data/themes";
 
 const ThemeContext = createContext(null);
@@ -27,6 +27,7 @@ export function ThemeProvider({ children }) {
     const saved = localStorage.getItem("portfolio-theme");
     return THEMES.find((t) => t.id === saved) ?? DEFAULT_THEME;
   });
+  const switchTimer = useRef(null);
 
   useEffect(() => {
     applyTheme(theme);
@@ -39,11 +40,11 @@ export function ThemeProvider({ children }) {
   }, []);
 
   const setTheme = (t) => {
-    // Briefly add class so CSS transitions fire during the switch
+    clearTimeout(switchTimer.current);
     document.documentElement.classList.add("theme-switching");
     setThemeState(t);
     localStorage.setItem("portfolio-theme", t.id);
-    setTimeout(() => document.documentElement.classList.remove("theme-switching"), 500);
+    switchTimer.current = setTimeout(() => document.documentElement.classList.remove("theme-switching"), 500);
   };
 
   return (
