@@ -472,7 +472,6 @@ export default function Contact({ conRef, conVis }) {
             <div
               className="contact-illustration"
               style={{
-                flex: 1,
                 marginTop: 12,
                 background: "var(--bg-card)",
                 border: "1px solid rgba(var(--accent-rgb),0.1)",
@@ -480,8 +479,9 @@ export default function Contact({ conRef, conVis }) {
                 overflow: "hidden",
                 alignItems: "center",
                 justifyContent: "center",
+                flex: 1,
                 minHeight: 160,
-                padding: "16px 12px",
+                padding: "12px",
               }}
             >
               <ContactIllustration />
@@ -837,7 +837,7 @@ export default function Contact({ conRef, conVis }) {
                   title="Book a call with John T. Korfeh"
                   style={{
                     width: "100%",
-                    minHeight: 580,
+                    height: 500,
                     border: "none",
                     display: "block",
                     opacity: frameLoaded ? 1 : 0,
