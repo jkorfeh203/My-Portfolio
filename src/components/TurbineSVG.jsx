@@ -20,13 +20,13 @@ export default function TurbineSVG() {
             cy="60"
             rx="12"
             ry="80"
-            fill="#d4a853"
+            fill="var(--accent)"
             transform={`rotate(${r} 150 150)`}
           />
         ))}
       </g>
-      <circle cx="150" cy="150" r="18" fill="#0a0a0a" stroke="#d4a853" strokeWidth="2" />
-      <circle cx="150" cy="150" r="8" fill="#d4a853" />
+      <circle cx="150" cy="150" r="18" fill="var(--bg)" stroke="var(--accent)" strokeWidth="2" />
+      <circle cx="150" cy="150" r="8" fill="var(--accent)" />
     </svg>
   );
 }

@@ -60,26 +60,51 @@ export default function ScholarshipCard({ s, isBookmarked, onToggle }) {
       >
         {/* Bookmark — anchored top-right, never in flow */}
         {onToggle && (
-          <button
-            onClick={() => onToggle(s.id)}
-            title={isBookmarked ? "Remove bookmark" : "Save scholarship"}
-            style={{
-              position: "absolute",
-              top: 18,
-              right: 18,
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              padding: 4,
-              color: isBookmarked ? "var(--accent)" : "var(--text-dim)",
-              display: "flex",
-              alignItems: "center",
-              transition: "color 0.2s ease",
-              zIndex: 1,
-            }}
-          >
-            <Bookmark size={15} strokeWidth={2} fill={isBookmarked ? "currentColor" : "none"} />
-          </button>
+          <Tooltip.Root>
+            <Tooltip.Trigger asChild>
+              <button
+                onClick={() => onToggle(s.id)}
+                style={{
+                  position: "absolute",
+                  top: 18,
+                  right: 18,
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: 4,
+                  color: isBookmarked ? "var(--accent)" : "var(--text-dim)",
+                  display: "flex",
+                  alignItems: "center",
+                  transition: "color 0.2s ease",
+                  zIndex: 1,
+                }}
+              >
+                <Bookmark size={15} strokeWidth={2} fill={isBookmarked ? "currentColor" : "none"} />
+              </button>
+            </Tooltip.Trigger>
+            <Tooltip.Portal>
+              <Tooltip.Content
+                side="left"
+                sideOffset={6}
+                style={{
+                  background: "var(--bg-card, #1a1a1a)",
+                  color: "var(--text-primary)",
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 10,
+                  letterSpacing: 0.5,
+                  padding: "5px 12px",
+                  borderRadius: 6,
+                  border: "1px solid rgba(var(--accent-rgb),0.18)",
+                  boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+                  userSelect: "none",
+                  zIndex: 9999,
+                }}
+              >
+                {isBookmarked ? "Remove bookmark" : "Save scholarship"}
+                <Tooltip.Arrow style={{ fill: "var(--bg-card, #1a1a1a)" }} />
+              </Tooltip.Content>
+            </Tooltip.Portal>
+          </Tooltip.Root>
         )}
 
         {/* Tags row — wraps freely, bookmark never interferes */}

@@ -59,7 +59,7 @@
     "id": 5,
     "name": "Mastercard Foundation Scholars Program",
     "organization": "Mastercard Foundation",
-    "field": "STEM",
+    "field": "Any",
     "degree": ["BS", "MS", "PhD"],
     "amount": "Full funding",
     "deadline": "Varies by institution",
