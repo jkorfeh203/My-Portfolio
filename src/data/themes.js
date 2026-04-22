@@ -54,6 +54,8 @@ export const THEMES = [
       "--text-dim":        "#8a8a8a",
       "--text-faint":      "#d0d0d0",
       "--text-footer":     "#707070",
+      "--dot-active":      "rgba(255,255,255,0.85)",
+      "--dot-inactive":    "rgba(255,255,255,0.2)",
     },
   },
   {

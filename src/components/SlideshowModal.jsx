@@ -200,7 +200,7 @@ export default function SlideshowModal({ item, onClose }) {
                 height: 7,
                 borderRadius: 4,
                 border: "none",
-                background: i === index ? "var(--accent)" : "rgba(var(--accent-rgb),0.2)",
+                background: i === index ? "var(--dot-active, var(--accent))" : "var(--dot-inactive, rgba(var(--accent-rgb),0.2))",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
                 padding: 0,
@@ -209,6 +209,20 @@ export default function SlideshowModal({ item, onClose }) {
           ))}
         </div>
       )}
+
+      {/* Keyboard hint */}
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: 11,
+          color: "var(--text-faint)",
+          marginTop: 16,
+          letterSpacing: 0.5,
+        }}
+      >
+        ← → navigate · ESC close
+      </div>
     </div>
   );
 }
