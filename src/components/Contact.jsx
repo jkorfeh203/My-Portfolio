@@ -81,6 +81,29 @@ function ContactIllustration() {
   return (
     <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg"
          style={{ width: "100%", height: "100%" }} aria-hidden="true">
+      <style>{`
+        @keyframes ci-float    { 0%,100%{ transform:translateY(0)   } 50%{ transform:translateY(-8px)  } }
+        @keyframes ci-float-sm { 0%,100%{ transform:translateY(0)   } 50%{ transform:translateY(-5px)  } }
+        @keyframes ci-blink    { 0%,49%{ opacity:1 } 50%,99%{ opacity:0 } }
+        @keyframes ci-steam    { 0%{ transform:translateY(0);opacity:0.3 } 100%{ transform:translateY(-10px);opacity:0 } }
+        @keyframes ci-dots     { 0%,100%{ opacity:0.28 } 50%{ opacity:0.65 } }
+        @keyframes ci-notif    { 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.3) } }
+        @keyframes ci-glow     { 0%,100%{ opacity:0.07 } 50%{ opacity:0.13 } }
+        @keyframes ci-sway     { 0%,100%{ transform:rotate(0deg) } 50%{ transform:rotate(4deg) } }
+        .ci-envelope  { animation: ci-float    3.2s ease-in-out infinite; transform-origin: 332px 70px; }
+        .ci-bubble    { animation: ci-float-sm 2.8s ease-in-out infinite 0.4s; transform-origin: 76px 68px; }
+        .ci-cursor    { animation: ci-blink    1.1s step-end infinite; }
+        .ci-steam1    { animation: ci-steam    2s ease-out infinite; }
+        .ci-steam2    { animation: ci-steam    2s ease-out infinite 0.7s; }
+        .ci-steam3    { animation: ci-steam    2s ease-out infinite 1.3s; }
+        .ci-dot1      { animation: ci-dots     2s ease-in-out infinite; }
+        .ci-dot2      { animation: ci-dots     2s ease-in-out infinite 0.3s; }
+        .ci-dot3      { animation: ci-dots     2s ease-in-out infinite 0.6s; }
+        .ci-notif     { animation: ci-notif    1.4s ease-in-out infinite; transform-origin: 360px 50px; }
+        .ci-glow      { animation: ci-glow     2.5s ease-in-out infinite; }
+        .ci-leaf-l    { animation: ci-sway     3s ease-in-out infinite; transform-origin: 314px 216px; }
+        .ci-leaf-r    { animation: ci-sway     3s ease-in-out infinite 0.5s reverse; transform-origin: 314px 210px; }
+      `}</style>
 
       {/* Corner brackets */}
       <path d="M10 10 L10 26 M10 10 L26 10"     stroke={`${a}0.25)`} strokeWidth="1.2" strokeLinecap="square"/>
@@ -96,35 +119,54 @@ function ContactIllustration() {
       )}
 
       {/* ── CHAIR BACK ── */}
-      <rect x="168" y="148" width="64" height="72" rx="12"
+      <rect x="168" y="150" width="64" height="68" rx="14"
             fill={`${a}0.05)`} stroke={`${a}0.18)`} strokeWidth="1"/>
 
+      {/* ── SCREEN GLOW on person ── */}
+      <ellipse cx="200" cy="145" rx="44" ry="22" className="ci-glow"
+               fill={`${a}1)`}/>
+
       {/* ── PERSON ── */}
-      {/* Shoulders / torso */}
-      <path d="M158 165 C158 148 174 140 200 140 C226 140 242 148 242 165 L242 178 L158 178 Z"
+      {/* Shoulders — soft forward lean */}
+      <path d="M162 172 C160 152 176 142 200 142 C224 142 240 152 238 172 L238 180 L162 180 Z"
             fill={`${a}0.1)`} stroke={`${a}0.38)`} strokeWidth="1.3"/>
       {/* Neck */}
-      <rect x="193" y="128" width="14" height="16" rx="4"
-            fill={`${a}0.1)`} stroke={`${a}0.3)`} strokeWidth="1"/>
+      <rect x="194" y="130" width="12" height="14" rx="5"
+            fill={`${a}0.1)`} stroke={`${a}0.28)`} strokeWidth="1"/>
       {/* Head */}
-      <circle cx="200" cy="106" r="26"
+      <circle cx="200" cy="108" r="25"
               fill={`${a}0.1)`} stroke={`${a}0.45)`} strokeWidth="1.4"/>
-      {/* Hair */}
-      <path d="M174 102 C174 82 186 70 200 70 C214 70 226 82 226 102"
-            fill={`${a}0.18)`} stroke={`${a}0.38)`} strokeWidth="1" strokeLinejoin="round"/>
+      {/* Ears */}
+      <path d="M175 108 Q170 108 170 113 Q170 118 175 118"
+            fill="none" stroke={`${a}0.35)`} strokeWidth="1"/>
+      <path d="M225 108 Q230 108 230 113 Q230 118 225 118"
+            fill="none" stroke={`${a}0.35)`} strokeWidth="1"/>
+      {/* Hair — natural strands, not solid cap */}
+      <path d="M176 104 C176 86 187 75 200 74 C213 75 224 86 224 104"
+            fill="none" stroke={`${a}0.42)`} strokeWidth="5"
+            strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M178 98 C180 84 189 76 200 75"
+            fill="none" stroke={`${a}0.2)`} strokeWidth="2" strokeLinecap="round"/>
+      <path d="M222 98 C220 84 211 76 200 75"
+            fill="none" stroke={`${a}0.2)`} strokeWidth="2" strokeLinecap="round"/>
       {/* Eyes */}
-      <circle cx="191" cy="108" r="2.5" fill={`${a}0.55)`}/>
-      <circle cx="209" cy="108" r="2.5" fill={`${a}0.55)`}/>
+      <circle cx="192" cy="110" r="2.5" fill={`${a}0.6)`}/>
+      <circle cx="208" cy="110" r="2.5" fill={`${a}0.6)`}/>
+      {/* Eye shine */}
+      <circle cx="193" cy="109" r="0.8" fill={`${a}0.9)`}/>
+      <circle cx="209" cy="109" r="0.8" fill={`${a}0.9)`}/>
       {/* Smile */}
-      <path d="M193 118 Q200 124 207 118" stroke={`${a}0.45)`} strokeWidth="1.3"
+      <path d="M194 120 Q200 126 206 120" stroke={`${a}0.5)`} strokeWidth="1.3"
             fill="none" strokeLinecap="round"/>
 
-      {/* Left arm on desk */}
-      <path d="M163 170 Q148 188 136 220" stroke={`${a}0.3)`} strokeWidth="9"
+      {/* Arms — hands resting on keyboard */}
+      <path d="M166 174 Q152 195 144 222" stroke={`${a}0.28)`} strokeWidth="8"
             strokeLinecap="round" fill="none"/>
-      {/* Right arm on desk */}
-      <path d="M237 170 Q252 188 264 220" stroke={`${a}0.3)`} strokeWidth="9"
+      <path d="M234 174 Q248 195 256 222" stroke={`${a}0.28)`} strokeWidth="8"
             strokeLinecap="round" fill="none"/>
+      {/* Hands on keyboard */}
+      <ellipse cx="144" cy="224" rx="10" ry="5" fill={`${a}0.15)`} stroke={`${a}0.3)`} strokeWidth="1"/>
+      <ellipse cx="256" cy="224" rx="10" ry="5" fill={`${a}0.15)`} stroke={`${a}0.3)`} strokeWidth="1"/>
 
       {/* ── LAPTOP ── */}
       {/* Screen */}
@@ -139,10 +181,15 @@ function ContactIllustration() {
       <rect x="148" y="177" width="70" height="4" rx="2"   fill={`${a}0.18)`}/>
       <rect x="148" y="186" width="48" height="4" rx="2"   fill={`${a}0.14)`}/>
       {/* Cursor */}
-      <rect x="220" y="158" width="2" height="11" rx="1"   fill={`${a}0.75)`}/>
+      <rect x="220" y="158" width="2" height="11" rx="1" className="ci-cursor" fill={`${a}0.75)`}/>
       {/* Base */}
       <rect x="124" y="222" width="152" height="8" rx="3"
             fill={`${a}0.12)`} stroke={`${a}0.38)`} strokeWidth="1.2"/>
+      {/* Keyboard keys hint */}
+      {[0,1,2,3,4].map(i => (
+        <rect key={i} x={148 + i*18} y="226" width="12" height="3" rx="1"
+              fill={`${a}0.12)`} stroke={`${a}0.2)`} strokeWidth="0.6"/>
+      ))}
       {/* Hinge dot */}
       <circle cx="200" cy="222" r="3" fill={`${a}0.3)`}/>
 
@@ -160,9 +207,11 @@ function ContactIllustration() {
       <path d="M84 217 Q93 217 93 221 Q93 225 84 225"
             stroke={`${a}0.35)`} strokeWidth="1.1" fill="none"/>
       {/* Steam wisps */}
-      <path d="M67 208 Q69 202 67 196" stroke={`${a}0.22)`} strokeWidth="1"
+      <path className="ci-steam1" d="M66 210 Q68 204 66 198" stroke={`${a}0.3)`} strokeWidth="1.2"
             fill="none" strokeLinecap="round"/>
-      <path d="M74 208 Q76 201 74 195" stroke={`${a}0.22)`} strokeWidth="1"
+      <path className="ci-steam2" d="M71 210 Q73 203 71 197" stroke={`${a}0.3)`} strokeWidth="1.2"
+            fill="none" strokeLinecap="round"/>
+      <path className="ci-steam3" d="M76 210 Q78 204 76 198" stroke={`${a}0.3)`} strokeWidth="1.2"
             fill="none" strokeLinecap="round"/>
 
       {/* ── PLANT (right of desk) ── */}
@@ -170,32 +219,39 @@ function ContactIllustration() {
             fill={`${a}0.22)`} stroke={`${a}0.35)`} strokeWidth="1"/>
       <line x1="314" y1="228" x2="314" y2="205"
             stroke={`${a}0.35)`} strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M314 216 Q304 208 300 197 Q311 200 314 216"
+      <path className="ci-leaf-l" d="M314 216 Q304 208 300 197 Q311 200 314 216"
             fill={`${a}0.15)`} stroke={`${a}0.28)`} strokeWidth="1"/>
-      <path d="M314 210 Q324 202 328 191 Q317 194 314 210"
+      <path className="ci-leaf-r" d="M314 210 Q324 202 328 191 Q317 194 314 210"
             fill={`${a}0.15)`} stroke={`${a}0.28)`} strokeWidth="1"/>
 
       {/* ── FLOATING ENVELOPE (top right) ── */}
-      <rect x="302" y="48" width="60" height="44" rx="6"
-            fill={`${a}0.08)`} stroke={`${a}0.42)`} strokeWidth="1.3"/>
-      <path d="M302 54 L332 76 L362 54"
-            stroke={`${a}0.48)`} strokeWidth="1.3" fill="none"
-            strokeLinecap="round" strokeLinejoin="round"/>
-      {/* Floating dots above envelope */}
-      <circle cx="332" cy="34" r="3.5" fill={`${a}0.28)`}/>
-      <circle cx="343" cy="26" r="2.5" fill={`${a}0.18)`}/>
-      <circle cx="352" cy="19" r="1.8" fill={`${a}0.12)`}/>
+      <g className="ci-envelope">
+        <rect x="302" y="48" width="60" height="44" rx="6"
+              fill={`${a}0.08)`} stroke={`${a}0.42)`} strokeWidth="1.3"/>
+        <path d="M302 54 L332 76 L362 54"
+              stroke={`${a}0.48)`} strokeWidth="1.3" fill="none"
+              strokeLinecap="round" strokeLinejoin="round"/>
+        {/* Notification dot */}
+        <circle cx="360" cy="50" r="6" fill="#ff4d4d" className="ci-notif"/>
+        <text x="357" y="54" fontSize="7" fill="white" fontFamily="sans-serif" fontWeight="bold">1</text>
+        {/* Floating dots above envelope */}
+        <circle cx="332" cy="34" r="3.5" className="ci-dot1" fill={`${a}0.28)`}/>
+        <circle cx="343" cy="26" r="2.5" className="ci-dot2" fill={`${a}0.18)`}/>
+        <circle cx="352" cy="19" r="1.8" className="ci-dot3" fill={`${a}0.12)`}/>
+      </g>
 
       {/* ── CHAT BUBBLE (top left) ── */}
-      <rect x="38" y="44" width="76" height="48" rx="11"
-            fill={`${a}0.08)`} stroke={`${a}0.38)`} strokeWidth="1.3"/>
-      <path d="M62 92 L54 106 L76 92"
-            fill={`${a}0.08)`} stroke={`${a}0.38)`} strokeWidth="1.3"
-            strokeLinejoin="round"/>
-      {/* Lines in bubble */}
-      <rect x="50" y="57" width="52" height="4" rx="2" fill={`${a}0.35)`}/>
-      <rect x="50" y="66" width="38" height="4" rx="2" fill={`${a}0.22)`}/>
-      <rect x="50" y="75" width="45" height="4" rx="2" fill={`${a}0.18)`}/>
+      <g className="ci-bubble">
+        <rect x="38" y="44" width="76" height="48" rx="11"
+              fill={`${a}0.08)`} stroke={`${a}0.38)`} strokeWidth="1.3"/>
+        <path d="M62 92 L54 106 L76 92"
+              fill={`${a}0.08)`} stroke={`${a}0.38)`} strokeWidth="1.3"
+              strokeLinejoin="round"/>
+        {/* Lines in bubble */}
+        <rect x="50" y="57" width="52" height="4" rx="2" fill={`${a}0.35)`}/>
+        <rect x="50" y="66" width="38" height="4" rx="2" fill={`${a}0.22)`}/>
+        <rect x="50" y="75" width="45" height="4" rx="2" fill={`${a}0.18)`}/>
+      </g>
     </svg>
   );
 }

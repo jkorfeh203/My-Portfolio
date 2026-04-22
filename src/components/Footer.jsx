@@ -36,7 +36,7 @@ export default function Footer() {
           marginTop: 16,
         }}
       >
-        © 2026 John T. Korfeh. All rights reserved.
+        © {new Date().getFullYear()} John T. Korfeh. All rights reserved.
       </div>
     </footer>
   );

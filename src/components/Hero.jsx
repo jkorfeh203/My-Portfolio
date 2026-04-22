@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Mail, Linkedin, Facebook } from "lucide-react";
+import * as Tooltip from "@radix-ui/react-tooltip";
 import TurbineSVG from "./TurbineSVG";
 import FlowLines from "./FlowLines";
 import Typewriter from "./Typewriter";
@@ -508,46 +509,80 @@ export default function Hero({ heroVisible, scrollTo, onCvDownload }) {
             </div>
 
             {/* Social icons */}
-            <div className="hero-socials">
-              {SOCIAL_LINKS.map((s, i) => (
-                <a
-                  key={i}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  style={{
-                    width: 42,
-                    height: 42,
-                    borderRadius: "50%",
-                    border: "1.5px solid rgba(var(--accent-rgb),0.25)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "var(--text-muted)",
-                    textDecoration: "none",
-                    transition: "all 0.3s ease",
-                    background: "rgba(var(--accent-rgb),0.04)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "var(--accent)";
-                    e.currentTarget.style.color = "var(--accent)";
-                    e.currentTarget.style.background = "rgba(var(--accent-rgb),0.1)";
-                    e.currentTarget.style.transform = "translateY(-3px)";
-                    e.currentTarget.style.boxShadow = "0 6px 20px rgba(var(--accent-rgb),0.2)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(var(--accent-rgb),0.25)";
-                    e.currentTarget.style.color = "var(--text-muted)";
-                    e.currentTarget.style.background = "rgba(var(--accent-rgb),0.04)";
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
+            <Tooltip.Provider delayDuration={200}>
+              <div className="hero-socials">
+                {SOCIAL_LINKS.map((s, i) => {
+                  const showTooltip = s.label === "ORCID" || s.label === "ResearchGate";
+                  const anchor = (
+                    <a
+                      key={i}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={s.label}
+                      style={{
+                        width: 42,
+                        height: 42,
+                        borderRadius: "50%",
+                        border: "1.5px solid rgba(var(--accent-rgb),0.25)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "var(--text-muted)",
+                        textDecoration: "none",
+                        transition: "all 0.3s ease",
+                        background: "rgba(var(--accent-rgb),0.04)",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "var(--accent)";
+                        e.currentTarget.style.color = "var(--accent)";
+                        e.currentTarget.style.background = "rgba(var(--accent-rgb),0.1)";
+                        e.currentTarget.style.transform = "translateY(-3px)";
+                        e.currentTarget.style.boxShadow = "0 6px 20px rgba(var(--accent-rgb),0.2)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "rgba(var(--accent-rgb),0.25)";
+                        e.currentTarget.style.color = "var(--text-muted)";
+                        e.currentTarget.style.background = "rgba(var(--accent-rgb),0.04)";
+                        e.currentTarget.style.transform = "translateY(0)";
+                        e.currentTarget.style.boxShadow = "none";
+                      }}
+                    >
+                      {s.icon}
+                    </a>
+                  );
+
+                  if (!showTooltip) return anchor;
+
+                  return (
+                    <Tooltip.Root key={i}>
+                      <Tooltip.Trigger asChild>{anchor}</Tooltip.Trigger>
+                      <Tooltip.Portal>
+                        <Tooltip.Content
+                          side="top"
+                          sideOffset={8}
+                          style={{
+                            background: "var(--bg-card)",
+                            color: "var(--text-primary)",
+                            fontFamily: "'JetBrains Mono', monospace",
+                            fontSize: 10,
+                            letterSpacing: 1,
+                            textTransform: "uppercase",
+                            padding: "5px 10px",
+                            borderRadius: 6,
+                            border: "1px solid rgba(var(--accent-rgb),0.2)",
+                            boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
+                          }}
+                        >
+                          {s.label}
+                          <Tooltip.Arrow style={{ fill: "var(--bg-card)" }} />
+                        </Tooltip.Content>
+                      </Tooltip.Portal>
+                    </Tooltip.Root>
+                  );
+                })}
+              </div>
+            </Tooltip.Provider>
           </div>
 
           {/* RIGHT ─ profile photo */}
