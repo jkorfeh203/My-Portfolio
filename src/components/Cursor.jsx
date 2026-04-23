@@ -11,6 +11,7 @@ export default function Cursor() {
   const hovered = useRef(false);
 
   useEffect(() => {
+    if ("ontouchstart" in window) return;
     document.body.style.cursor = "none";
 
     const lerp = (a, b, t) => a + (b - a) * t;

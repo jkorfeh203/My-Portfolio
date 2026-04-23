@@ -87,15 +87,17 @@ export default function Portfolio() {
       {loading && <Preloader onComplete={() => setLoading(false)} />}
       <ScrollProgress />
       <Nav activeSection={activeSection} scrolled={scrolled} scrollTo={scrollTo} />
-      <Hero heroVisible={heroVisible} scrollTo={scrollTo} onCvDownload={() => setCvModalOpen(true)} />
-      <About aboutRef={aboutRef} aboutVis={aboutVis} />
-      <Research resRef={resRef} resVis={resVis} />
-      <Skills skillRef={skillRef} skillVis={skillVis} />
-      <Experience expRef={expRef} expVis={expVis} />
-      <Achievements achRef={achRef} achVis={achVis} />
-      <Testimonials tesRef={tesRef} tesVis={tesVis} />
-      <Gallery galRef={galRef} galVis={galVis} />
-      <Contact conRef={conRef} conVis={conVis} />
+      <main>
+        <Hero heroVisible={heroVisible} scrollTo={scrollTo} onCvDownload={() => setCvModalOpen(true)} />
+        <About aboutRef={aboutRef} aboutVis={aboutVis} />
+        <Research resRef={resRef} resVis={resVis} />
+        <Skills skillRef={skillRef} skillVis={skillVis} />
+        <Experience expRef={expRef} expVis={expVis} />
+        <Achievements achRef={achRef} achVis={achVis} />
+        <Testimonials tesRef={tesRef} tesVis={tesVis} />
+        <Gallery galRef={galRef} galVis={galVis} />
+        <Contact conRef={conRef} conVis={conVis} />
+      </main>
       <Footer />
       <FloatingCTA scrollTo={scrollTo} />
       <ThemePalette />

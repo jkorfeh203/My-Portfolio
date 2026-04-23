@@ -75,6 +75,7 @@ export default function SlideshowModal({ item, onClose }) {
           )}
           <button
             onClick={onClose}
+            aria-label="Close slideshow"
             style={{
               width: 34,
               height: 34,
@@ -112,6 +113,7 @@ export default function SlideshowModal({ item, onClose }) {
         {total > 1 && (
           <button
             onClick={prev}
+            aria-label="Previous image"
             style={{
               width: 44, height: 44, borderRadius: "50%",
               border: "1px solid rgba(var(--accent-rgb),0.3)",
@@ -170,6 +172,7 @@ export default function SlideshowModal({ item, onClose }) {
         {total > 1 && (
           <button
             onClick={next}
+            aria-label="Next image"
             style={{
               width: 44, height: 44, borderRadius: "50%",
               border: "1px solid rgba(var(--accent-rgb),0.3)",

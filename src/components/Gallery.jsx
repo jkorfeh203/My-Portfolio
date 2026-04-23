@@ -38,6 +38,8 @@ export default function Gallery({ galRef, galVis }) {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
+              aria-label={`Filter by ${cat}`}
+              aria-pressed={filter === cat}
               style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 11,
