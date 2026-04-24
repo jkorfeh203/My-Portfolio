@@ -207,6 +207,8 @@ function ProfilePhoto() {
         <img
           src={johnPhoto}
           alt="John T. Korfeh"
+          fetchpriority="high"
+          decoding="async"
           style={{
             width: "100%",
             height: "100%",

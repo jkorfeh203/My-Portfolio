@@ -8,9 +8,9 @@ export default function Preloader({ onComplete }) {
   const circumference = +(2 * Math.PI * r).toFixed(1); // ≈ 326.7
 
   useEffect(() => {
-    const t1 = setTimeout(() => setDrawn(true),  80);
-    const t2 = setTimeout(() => setExit(true),  2300);
-    const t3 = setTimeout(() => onComplete(),   2900);
+    const t1 = setTimeout(() => setDrawn(true),   80);
+    const t2 = setTimeout(() => setExit(true),  1100);
+    const t3 = setTimeout(() => onComplete(),   1600);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, [onComplete]);
 

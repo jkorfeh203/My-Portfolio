@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Mail, GraduationCap, Globe, Zap, Calendar, BookOpen } from "lucide-react";
 import SectionTitle from "./SectionTitle";
 import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY } from "../constants";
@@ -260,6 +260,18 @@ function ContactIllustration() {
 
 export default function Contact({ conRef, conVis }) {
   const [frameLoaded, setFrameLoaded] = useState(false);
+  const [iframeSrc, setIframeSrc]     = useState(null);
+  const iframeRef = useRef(null);
+
+  useEffect(() => {
+    if (!conRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setIframeSrc(BOOKING_URL); observer.disconnect(); } },
+      { rootMargin: "200px" }
+    );
+    observer.observe(conRef.current);
+    return () => observer.disconnect();
+  }, [conRef]);
 
   return (
     <section
@@ -891,7 +903,8 @@ export default function Contact({ conRef, conVis }) {
                 )}
 
                 <iframe
-                  src={BOOKING_URL}
+                  ref={iframeRef}
+                  src={iframeSrc ?? undefined}
                   title="Book a call with John T. Korfeh"
                   style={{
                     width: "100%",
